@@ -22,3 +22,6 @@ gradle-app.setting
 
 ## IntelliJ files
 /.idea
+
+## Own
+/out
