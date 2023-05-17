@@ -1,6 +1,10 @@
 package net.mauki.maukiseasonpl.core;
 
 import de.mp.jdwc.internal.JavaDiscordWebhookClient;
+import de.mp.kwsb.internal.KWSB;
+import de.mp.kwsb.internal.Request;
+import de.mp.kwsb.internal.Response;
+import de.mp.kwsb.internal.handlers.GetRequestHandler;
 import net.mauki.maukiseasonpl.commands.GamemodeCMD;
 import net.mauki.maukiseasonpl.commands.LinkCMD;
 import net.mauki.maukiseasonpl.discord.DiscordClient;
@@ -12,6 +16,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -28,6 +33,7 @@ public class Boot extends JavaPlugin implements Listener {
     private static final Pattern PATTERN = Pattern.compile("-?\\d+(\\.\\d+)?");
     private static final String SERVER_NAME = System.getProperty("user.dir").toLowerCase().substring(System.getProperty("user.dir").toLowerCase().length() - 4);
     private static DiscordClient DISCORD_CLIENT;
+    private static KWSB kwsb = new KWSB();
     private static final JavaDiscordWebhookClient D_WEBHOOK = new JavaDiscordWebhookClient.Builder()
             .setToken("OXkwyHTxHTudU-Dg7NiP2Ao4N9CjN28wSuvOne2-Xc_mDAanye3HmEyrjg2KBQT-D_7B")
             .setID(1059912656997331055L)
@@ -35,10 +41,12 @@ public class Boot extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        //Constants
         LOGGER = getLogger();
         PLUGIN = Boot.getPlugin(Boot.class);
         DISCORD_CLIENT = new DiscordClient("MTEwODA3MzE5NjY2NzgwMTYwMQ.GqOmbO.cBQ1NG2dtul5l8l7W18kcwLdnsn7YV8j5iPLw4");
 
+        //Database
         LiteSQL.connect();
         LiteSQL.createTables();
 
@@ -52,6 +60,35 @@ public class Boot extends JavaPlugin implements Listener {
         registerEvent(new ChatEvents());
         registerEvent(new Configuration());
 
+        //REST-API
+        kwsb.addRequestHandler("/", new GetRequestHandler() {
+            @Override
+            public void onRequest(Request request, Response response) throws Exception {
+                response.send(new JSONObject().put("code", 403).put("message", "Forbidden").toString());
+            }
+        });
+
+        new Thread(() -> {
+            try {
+                kwsb.listen(8080).whenComplete((event, throwable) -> {
+                    if(throwable != null) throwable.printStackTrace();
+                    Boot.getLOGGER().info("API started");
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+/*        //Website
+        new Thread(() -> {
+            try {
+                Runtime.getRuntime().exec("npm start");
+            } catch(Exception ex) {
+                ex.printStackTrace();
+            }
+        }).start();*/
+
+        //Discord
         new Thread(() -> {
             try {
                 getDISCORD_CLIENT().start();
