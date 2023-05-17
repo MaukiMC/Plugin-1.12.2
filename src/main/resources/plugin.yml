@@ -1,0 +1,18 @@
+name: MaukiSeasonPL
+version: SNAPSHOT-v1.0.0_ALPHA
+main: net.mauki.maukiseasonpl.core.Boot
+api-version: 1.12.2
+prefix: MaukiSeasonPL
+load: STARTUP
+authors:
+  - MiauRizius
+  - KikiYT90
+description: Basically a manager for the entire server
+website: https://web.mc.mauki.net
+commands:
+  gamemode:
+    aliases:
+      - gm
+    description: Ändere deinen oder den Spielmodus eines Spielers.
+  link:
+    description: Verlinke deinen Discord-Account in Minecraft.
