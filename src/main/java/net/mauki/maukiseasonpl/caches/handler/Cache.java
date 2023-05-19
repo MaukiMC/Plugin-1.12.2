@@ -32,6 +32,15 @@ public class Cache<K, V> {
         return values.get(needed_index.get());
     }
 
+    public boolean contains(K key) {
+        if(keys.containsKey(key)) throw new NullPointerException("Key was not found");
+        AtomicReference<Integer> needed_index = new AtomicReference<>();
+        keys.forEach((index, target_key) -> {
+            if(target_key == key) needed_index.set(index);
+        });
+        return needed_index.get() != null;
+    }
+
     public void forEach(BiConsumer<? super K, ? super V> action) {
         if(action == null) throw new NullPointerException();
         if(size() <= 0) return;
