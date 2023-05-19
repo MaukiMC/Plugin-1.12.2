@@ -16,3 +16,7 @@ commands:
     description: Ändere deinen oder den Spielmodus eines Spielers.
   link:
     description: Verlinke deinen Discord-Account in Minecraft.
+  invsee:
+    description: Öffne das Inventar eines Mitspielers
+  endsee:
+    description: Öffne deine Enderchest oder die eines Mitspielers

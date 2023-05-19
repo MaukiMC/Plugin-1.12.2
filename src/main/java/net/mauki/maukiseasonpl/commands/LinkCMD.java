@@ -1,6 +1,7 @@
 package net.mauki.maukiseasonpl.commands;
 
 import net.mauki.maukiseasonpl.core.LiteSQL;
+import net.mauki.maukiseasonpl.core.MessageConstants;
 import net.mauki.maukiseasonpl.features.linking.RandomStringGenerator;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -16,7 +17,7 @@ public class LinkCMD implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         try {
             if(!(sender instanceof Player player)) {
-                sender.sendMessage("Fehlgeschlagen! Du musst ein Spieler sein, um diesen Befehl verwenden zu können.");
+                sender.sendMessage(MessageConstants.NEED_TO_BE_A_PLAYER());
                 return false;
             }
             ResultSet rs = LiteSQL.onQuery("SELECT * FROM connections WHERE uuid = '" + player.getUniqueId() + "'");

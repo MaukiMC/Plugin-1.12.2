@@ -1,5 +1,6 @@
 package net.mauki.maukiseasonpl.commands;
 
+import net.mauki.maukiseasonpl.core.MessageConstants;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -17,7 +18,7 @@ public class GamemodeCMD implements CommandExecutor {
         Player player;
 
         if((args.length != 2) && args.length != 1) {
-            sender.sendMessage(ChatColor.RED + "Fehlgeschlagen! Invalider Syntax.");
+            sender.sendMessage(MessageConstants.INVALID_SYNTAX());
             return true;
         }
 
@@ -36,12 +37,12 @@ public class GamemodeCMD implements CommandExecutor {
         }
 
         if(!sender.isOp()) {
-            sender.sendMessage(ChatColor.RED + "Fehlgeschlagen! Ungenügen Rechte.");
+            sender.sendMessage(MessageConstants.NOT_AN_OPERATOR());
             return true;
         }
 
         if(player == null) {
-            sender.sendMessage(ChatColor.RED + "Fehlgeschlagen! Ein unerwarteter Fehler ist aufgetreten.");
+            sender.sendMessage(MessageConstants.UNEXPECTED_ERROR());
             return true;
         }
 
