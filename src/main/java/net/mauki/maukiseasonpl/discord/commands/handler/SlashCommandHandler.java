@@ -65,7 +65,6 @@ public class SlashCommandHandler extends ListenerAdapter {
      * Loads all commands
      */
     public static void loadCommands() {
-
         slashCommandList.add(new LinkCommand());
 
         CommandListUpdateAction commandListUpdateAction = Boot.getDISCORD_CLIENT().getJDA().updateCommands();

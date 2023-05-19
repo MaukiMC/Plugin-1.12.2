@@ -11,17 +11,33 @@ public class Cache<K, V> {
     private final HashMap<Integer, K> keys = new HashMap<>();
     private final HashMap<Integer, V> values = new HashMap<>();
 
+    /**
+     * Add an element to the cache
+     * @param key The unique key of the element
+     * @param value The value/element of the key
+     */
     public void add(K key, V value) {
+        if(contains(key)) throw new IllegalArgumentException("Key is already in use");
         keys.put(SIZE, key);
         values.put(SIZE, value);
         SIZE++;
     }
 
+    /**
+     * Get the value of the index
+     * @param i The index of the value in the cache
+     * @return The value of the index
+     */
     public V get(int i) {
         if(i >= SIZE) throw new IndexOutOfBoundsException();
         return values.get(i);
     }
 
+    /**
+     * Get the value of the key
+     * @param key The key of the value in the cache
+     * @return The value of the key
+     */
     public V get(K key) {
         if(keys.containsKey(key)) throw new NullPointerException("Key was not found");
         AtomicReference<Integer> needed_index = new AtomicReference<>();
@@ -32,6 +48,11 @@ public class Cache<K, V> {
         return values.get(needed_index.get());
     }
 
+    /**
+     * Check if the key is already in use
+     * @param key The key you want to check
+     * @return If the key is already in use
+     */
     public boolean contains(K key) {
         if(keys.containsKey(key)) throw new NullPointerException("Key was not found");
         AtomicReference<Integer> needed_index = new AtomicReference<>();
@@ -41,6 +62,10 @@ public class Cache<K, V> {
         return needed_index.get() != null;
     }
 
+    /**
+     * Loop through all cache elements
+     * @param action The action you want to perform with the keys and values
+     */
     public void forEach(BiConsumer<? super K, ? super V> action) {
         if(action == null) throw new NullPointerException();
         if(size() <= 0) return;
@@ -49,6 +74,10 @@ public class Cache<K, V> {
         }
     }
 
+    /**
+     * Get the size of the cache
+     * @return The size
+     */
     public int size() {
         return values.size();
     }

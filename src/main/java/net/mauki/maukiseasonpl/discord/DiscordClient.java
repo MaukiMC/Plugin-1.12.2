@@ -23,11 +23,19 @@ public class DiscordClient extends ListenerAdapter {
     private JDABuilder jdaBuilder;
     private JDA JDA;
 
+    /**
+     * Initialise the client
+     * @param token The discord token of the bot
+     */
     public DiscordClient(String token) {
         Boot.getLOGGER().info("Initialising DiscordClient...");
         this.token = token;
     }
 
+    /**
+     * Starts the discord bot
+     * @throws InterruptedException Will be thrown when there was an error while starting the bot
+     */
     public void start() throws InterruptedException {
         Boot.getLOGGER().info("Booting DiscordClient...");
         if(!Boot.getSERVER_NAME().equalsIgnoreCase("pa01")) {

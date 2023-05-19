@@ -7,10 +7,12 @@ import java.sql.*;
 
 public class LiteSQL {
 
-    //Create variables
     private static Connection conn;
 
-    //isConected boolean (for if)
+    /**
+     * Check if there's already a connection to the database
+     * @return If there's already a connection to the database
+     */
     public static boolean isConnected() {
         try {
             if (conn.isClosed()) {
@@ -22,7 +24,9 @@ public class LiteSQL {
         return true;
     }
 
-    //Create connect method
+    /**
+     * Establish a connection to the database
+     */
     public static void connect() {
         conn = null;
         try {
@@ -37,8 +41,9 @@ public class LiteSQL {
         }
     }
 
-
-    //Create disconnect method
+    /**
+     * Disconnect from the database
+     */
     public static void disconnect() {
         try {
             if (conn != null) {
@@ -50,18 +55,24 @@ public class LiteSQL {
         }
     }
 
-
-    //Create Update-Method
-    public static void onUpdate(String sql) {
+    /**
+     * Send an UPDATE SQL-Statement
+     * @param sql The UPDATE-Statement you want to execute
+     */
+    public static boolean onUpdate(String sql) {
         try {
-            conn.createStatement().execute(sql);
+            return conn.createStatement().execute(sql);
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
-
-    //Create Query-Method
+    /**
+     * Send an QUERY SQL-Statement
+     * @param sql The QUERY-Statement you want to execute
+     * @return The output of the input
+     */
     @Nullable
     public static ResultSet onQuery(String sql) {
         try {

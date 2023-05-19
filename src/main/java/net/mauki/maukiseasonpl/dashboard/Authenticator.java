@@ -17,6 +17,14 @@ import java.util.UUID;
 
 public class Authenticator {
 
+    /**
+     * Authenticates a user
+     * @param request The {@link Request} object of the web-request
+     * @param response The {@link Response} object of the web-request
+     * @return An {@link ArrayList} with a {@link User} object on index 0 and {@link OfflinePlayer} on index 1
+     * @throws HttpException Will be thrown when there was an error with the Web
+     * @throws SQLException Will be thrown when there was an error with the database
+     */
     public static ArrayList<Object> authenticate(Request request, Response response) throws HttpException, SQLException {
         //Access-Token
         String access_token = request.getHeader("Authorization");
