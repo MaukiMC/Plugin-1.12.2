@@ -61,6 +61,7 @@ public class Boot extends JavaPlugin implements Listener {
         registerCommand("sudo", new SudoCMD());
         registerCommand("msg", new MessageCMD());
         registerCommand("message", new MessageCMD());
+        registerCommand("heal", new HealCMD());
 
         //Listeners
         registerEvent(new CrossChat());

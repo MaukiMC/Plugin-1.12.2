@@ -24,3 +24,5 @@ commands:
     aliases:
       - msg
     description: Sende einem Mitspieler eine Nachricht
+  heal:
+    description: Heile dich oder einen deiner Mitspieler
