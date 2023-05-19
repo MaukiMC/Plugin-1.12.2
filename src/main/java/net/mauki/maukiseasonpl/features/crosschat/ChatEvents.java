@@ -3,6 +3,7 @@ package net.mauki.maukiseasonpl.features.crosschat;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.mauki.maukiseasonpl.caches.Caches;
 import net.mauki.maukiseasonpl.core.Boot;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -36,9 +37,10 @@ public class ChatEvents extends ListenerAdapter implements Listener {
         Objects.requireNonNull(Boot.getDISCORD_CLIENT().getJDA().getTextChannelById(983789134407663646L)).sendMessageEmbeds(
                 new EmbedBuilder()
                         .setColor(Color.red)
-                        .setAuthor(event.getPlayer().getName() + " hat das Spiel verlassen..",null,  "https://crafatar.com/avatars/" + event.getPlayer().getUniqueId() + "?overlay")
+                        .setAuthor(event.getPlayer().getName() + " hat das Spiel verlassen.",null,  "https://crafatar.com/avatars/" + event.getPlayer().getUniqueId() + "?overlay")
                         .build()
         ).queue();
+        Caches.latestMessageCache.remove(event.getPlayer());
     }
 
 }

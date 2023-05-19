@@ -1,5 +1,6 @@
 package net.mauki.maukiseasonpl.commands;
 
+import net.mauki.maukiseasonpl.caches.Caches;
 import net.mauki.maukiseasonpl.core.MessageConstants;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -31,6 +32,7 @@ public class MessageCMD implements CommandExecutor {
         }
         receiver.sendMessage(ChatColor.GOLD + "[" + ChatColor.DARK_RED + sender.getName() + ChatColor.GOLD + " -> " + ChatColor.GRAY + "Du" + ChatColor.GOLD + "]: " + ChatColor.RESET + message);
         sender.sendMessage(ChatColor.GOLD + "[" + ChatColor.DARK_RED + "Du " + ChatColor.GOLD +"-> " + ChatColor.GRAY + receiver.getName() + ChatColor.GOLD + "]: " + ChatColor.RESET + message);
+        Caches.latestMessageCache.add((Player) sender, receiver);
         return true;
     }
 }
