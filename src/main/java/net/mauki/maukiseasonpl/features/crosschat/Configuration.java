@@ -17,10 +17,6 @@ public class Configuration extends ListenerAdapter implements Listener {
         Boot.getLOGGER().info("Reloading the server...");
         Boot.getDISCORD_CLIENT().getJDA().shutdownNow();
         Boot.getPLUGIN().getServer().reload();
-        Boot.getKWSB().stop().whenComplete((bool, throwable) -> {
-           if(throwable != null) throwable.printStackTrace();
-            System.out.println("Shut down the REST-API");
-        });
     }
 
     @EventHandler
