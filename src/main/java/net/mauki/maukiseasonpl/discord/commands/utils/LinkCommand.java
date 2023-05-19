@@ -16,11 +16,23 @@ import java.util.UUID;
  * Discord command for linking your accounts
  */
 public class LinkCommand implements SlashCommand {
+
+    /**
+     * The name of the command
+     * @return The name of the command
+     */
     @Override
     public String commandName() {
         return "link";
     }
 
+    /**
+     * The code which will be executed when command is being called
+     * @param event
+     *        The event object of the event to get all information for the command
+     *
+     * @throws Exception Will be thrown when there was an error while executing the command
+     */
     @Override
     public void handle(SlashCommandInteractionEvent event) throws Exception {
         String code = Objects.requireNonNull(event.getOption("code")).getAsString();
@@ -36,6 +48,10 @@ public class LinkCommand implements SlashCommand {
         }
     }
 
+    /**
+     * The command data of the slashcommand
+     * @return The command data of the slashcommand
+     */
     @Override
     public CommandData commandData() {
         return Commands.slash("link", "Verbinde deinen Minecraft Account mit deinem Discord Account.")

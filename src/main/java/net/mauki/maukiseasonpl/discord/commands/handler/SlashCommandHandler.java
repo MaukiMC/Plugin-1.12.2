@@ -31,6 +31,10 @@ public class SlashCommandHandler extends ListenerAdapter {
      */
     public static List<SlashCommand> slashCommandOfSubCommandList = new ArrayList<>();
 
+    /**
+     * The code which will be executed when a command is being called
+     * @param event The event for when a slashcommand is called
+     */
     @Override
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
         AtomicBoolean performed = new AtomicBoolean(false);
@@ -95,6 +99,10 @@ public class SlashCommandHandler extends ListenerAdapter {
 
     }
 
+    /**
+     * The event which will be called when the bot shuts down
+     * @param event The event
+     */
     @Override
     public void onShutdown(@NotNull ShutdownEvent event) {
         for(Guild g : Boot.getDISCORD_CLIENT().getJDA().getGuilds()) {
