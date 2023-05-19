@@ -5,6 +5,9 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 
+/**
+ * Random String generator
+ */
 public class RandomStringGenerator {
 
     /**
@@ -17,18 +20,33 @@ public class RandomStringGenerator {
         return new String(buf);
     }
 
+    /**
+     * All uppercase letters
+     */
     public static final String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
+    /**
+     * All lowercase letters
+     */
     public static final String lower = upper.toLowerCase(Locale.ROOT);
-
+    /**
+     * All digits
+     */
     public static final String digits = "0123456789";
-
+    /**
+     * All alphanumerus numbers
+     */
     public static final String alphanum = upper + lower + digits;
-
+    /**
+     * A random object for randomising
+     */
     private final Random random;
-
+    /**
+     * A array for symbols
+     */
     private final char[] symbols;
-
+    /**
+     * A buffer of chars
+     */
     private final char[] buf;
 
     /**

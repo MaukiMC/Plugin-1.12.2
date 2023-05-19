@@ -12,6 +12,9 @@ import org.bukkit.entity.Player;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Command to generate a code for linking your discord account
+ */
 public class LinkCMD implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

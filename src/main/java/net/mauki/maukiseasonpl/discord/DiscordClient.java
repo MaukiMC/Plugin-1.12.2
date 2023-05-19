@@ -16,12 +16,29 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 
+/**
+ * Manager for the discord client
+ */
 public class DiscordClient extends ListenerAdapter {
 
+    /**
+     * If you want to reload the bot
+     * @deprecated
+     */
     private boolean reload = false;
+    /**
+     * The token of the bot
+     */
     private final String token;
+    /**
+     * The {@link JDABuilder} of the bot
+     */
     private JDABuilder jdaBuilder;
+    /**
+     * The {@link JDA} object of the website
+     */
     private JDA JDA;
+
 
     /**
      * Initialise the client
@@ -65,22 +82,44 @@ public class DiscordClient extends ListenerAdapter {
         Boot.getLOGGER().info("Shutting down the DiscordClient.");
     }
 
+    /**
+     * Get the {@link JDA} object
+     * @return The {@link JDA} object
+     */
     public net.dv8tion.jda.api.JDA getJDA() {
         return JDA;
     }
 
+    /**
+     * Get the {@link JDABuilder} object
+     * @return The {@link JDABuilder} object
+     */
     public JDABuilder getJdaBuilder() {
         return jdaBuilder;
     }
 
+    /**
+     * Get the token of the bot
+     * @return The token of the bot
+     */
     public String getToken() {
         return token;
     }
 
+    /**
+     * Check if the bot should be reloaded
+     * @return If the bot should be reloaded
+     * @deprecated
+     */
     public boolean isReload() {
         return reload;
     }
 
+    /**
+     * Set if the bot should be reloaded
+     * @param reload If the bot should be reloaded
+     * @deprecated
+     */
     public void setReload(boolean reload) {
         this.reload = reload;
     }

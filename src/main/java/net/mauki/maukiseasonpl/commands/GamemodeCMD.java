@@ -10,6 +10,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Command to change your or someone else gamemode
+ */
 public class GamemodeCMD implements CommandExecutor {
 
     @Override

@@ -4,10 +4,22 @@ import net.dv8tion.jda.api.entities.User;
 import org.bukkit.entity.Player;
 import org.json.JSONObject;
 
+/**
+ * An object with all for the plugin necessary information
+ */
 public class InternalPlayer {
 
+    /**
+     * The {@link User} object of the {@link InternalPlayer}
+     */
     private User user;
+    /**
+     * The code of the {@link InternalPlayer}
+     */
     private String code;
+    /**
+     * The {@link Player} of the {@link InternalPlayer}
+     */
     private Player player;
 
     /**

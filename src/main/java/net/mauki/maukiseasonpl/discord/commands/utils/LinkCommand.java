@@ -12,6 +12,9 @@ import java.sql.ResultSet;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * Discord command for linking your accounts
+ */
 public class LinkCommand implements SlashCommand {
     @Override
     public String commandName() {

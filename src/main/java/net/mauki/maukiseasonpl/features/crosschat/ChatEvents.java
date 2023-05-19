@@ -1,23 +1,27 @@
 package net.mauki.maukiseasonpl.features.crosschat;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.mauki.maukiseasonpl.caches.Caches;
 import net.mauki.maukiseasonpl.core.Boot;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.util.Objects;
 
+/**
+ * Manager for all events which can happen in the chat
+ */
 public class ChatEvents extends ListenerAdapter implements Listener {
 
+    /**
+     * The listener to inform the discord about when a player joins
+     * @param event The event
+     */
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         event.setJoinMessage(ChatColor.GRAY + event.getPlayer().getName() + " ist dem Spiel beigetreten.");
@@ -30,6 +34,10 @@ public class ChatEvents extends ListenerAdapter implements Listener {
         ).queue();
     }
 
+    /**
+     * The listener to inform the discord about when a player left
+     * @param event The event
+     */
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) {
         event.setQuitMessage(ChatColor.GRAY + event.getPlayer().getName() + " hat das Spiel verlassen.");

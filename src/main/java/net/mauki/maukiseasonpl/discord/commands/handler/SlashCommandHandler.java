@@ -13,10 +13,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Handler for SlashCommands and SubCommands
+ */
 public class SlashCommandHandler extends ListenerAdapter {
 
+    /**
+     * The list of all slashcommands
+     */
     public static List<SlashCommand> slashCommandList = new ArrayList<>();
+    /**
+     * The list of all subcommands
+     */
     public static List<SubCommand> subCommandList = new ArrayList<>();
+    /**
+     * The list of all slashcommands of subcommands
+     */
     public static List<SlashCommand> slashCommandOfSubCommandList = new ArrayList<>();
 
     @Override

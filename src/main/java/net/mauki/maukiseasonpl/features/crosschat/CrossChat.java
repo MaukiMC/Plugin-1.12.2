@@ -13,8 +13,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
+/**
+ * The crosschat itself
+ */
 public class CrossChat extends ListenerAdapter implements Listener {
 
+    /**
+     * The listener to catch every chat message to use it for crosschatting
+     * @param event The event
+     * @throws IOException If there was an error
+     */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onAsyncChat(AsyncPlayerChatEvent event) throws IOException {
         event.setCancelled(true);

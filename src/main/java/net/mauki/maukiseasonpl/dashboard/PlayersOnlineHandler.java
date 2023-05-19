@@ -11,6 +11,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * Endpoint for all online players
+ */
 public class PlayersOnlineHandler extends GetRequestHandler {
     @Override
     public void onRequest(Request request, Response response) throws Exception {

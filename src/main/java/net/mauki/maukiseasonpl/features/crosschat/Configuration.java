@@ -8,6 +8,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.server.ServerCommandEvent;
 
+/**
+ * Configuration for crosschatting
+ */
 public class Configuration extends ListenerAdapter implements Listener {
 
     /**
@@ -19,6 +22,10 @@ public class Configuration extends ListenerAdapter implements Listener {
         Boot.getPLUGIN().getServer().reload();
     }
 
+    /**
+     * Listener to prevent the server from reloading due to networking issues
+     * @param event The event that will be triggered before a command will be performed
+     */
     @EventHandler
     public void onReloadCommand(PlayerCommandPreprocessEvent event) {
         String cmd = event.getMessage().split(" ")[0].replaceAll("(?i)bukkit", "");
@@ -29,6 +36,10 @@ public class Configuration extends ListenerAdapter implements Listener {
         reload();*/
     }
 
+    /**
+     * Listener to prevent the server from reloading due to networking issues
+     * @param event The event that will be triggered before a command will be performed
+     */
     @EventHandler
     public void onReloadCommand(ServerCommandEvent event) {
         String cmd = event.getCommand().split(" ")[0].replaceAll("(?i)bukkit", "");

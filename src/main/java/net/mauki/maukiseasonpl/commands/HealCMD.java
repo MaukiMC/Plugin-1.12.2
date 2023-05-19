@@ -8,8 +8,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * Command to heal a player
+ */
 public class HealCMD implements CommandExecutor {
 
+    /**
+     * The sender of the command
+     */
     CommandSender author;
 
     @Override
@@ -53,6 +59,10 @@ public class HealCMD implements CommandExecutor {
         return true;
     }
 
+    /**
+     * Heal a {@link Player}
+     * @param player The player you want to heal
+     */
     private void heal(Player player) {
         player.setHealth(20);
         player.setFoodLevel(20);

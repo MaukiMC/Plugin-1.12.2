@@ -4,8 +4,14 @@ import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 
 import java.util.ArrayList;
 
+/**
+ * Interface for SubCommands
+ */
 public interface SubCommand {
 
+    /**
+     * The list of the slashcommand
+     */
     ArrayList<SlashCommand> slashCommands = new ArrayList<>();
 
     /**
@@ -20,6 +26,10 @@ public interface SubCommand {
      */
     CommandData manageData();
 
+    /**
+     * Get the {@link ArrayList} with the slashcommands
+     * @return The {@link ArrayList} of the slashcommands
+     */
     default ArrayList<SlashCommand> getSlashCommands() {
         return slashCommands;
     }

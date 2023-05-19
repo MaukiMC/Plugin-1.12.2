@@ -5,8 +5,14 @@ import org.jetbrains.annotations.Nullable;
 import java.io.File;
 import java.sql.*;
 
+/**
+ * Manager for the SQL-Database
+ */
 public class LiteSQL {
 
+    /**
+     * The connection of the SQL-connection
+     */
     private static Connection conn;
 
     /**
@@ -58,6 +64,7 @@ public class LiteSQL {
     /**
      * Send an UPDATE SQL-Statement
      * @param sql The UPDATE-Statement you want to execute
+     * @return boolean if the statement was successfully
      */
     public static boolean onUpdate(String sql) {
         try {
@@ -83,6 +90,9 @@ public class LiteSQL {
         return null;
     }
 
+    /**
+     * Creates the tables for the plugin (if they don't exists)
+     */
     public static void createTables() {
         onUpdate("CREATE TABLE IF NOT EXISTS connections(uuid VARCHAR, code VARCHAR, discord_id VARCHAR)");
     }

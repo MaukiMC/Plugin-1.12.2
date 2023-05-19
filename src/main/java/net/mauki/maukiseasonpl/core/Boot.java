@@ -30,19 +30,46 @@ import java.net.URLConnection;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
+/**
+ * Main-file of the entire plugin. Manager for basically everything
+ */
 public class Boot extends JavaPlugin implements Listener {
 
+    /**
+     * The {@link Logger} of the plugin
+     */
     private static Logger LOGGER;
+    /**
+     * The {@link Plugin} object of the plugin
+     */
     private static Plugin PLUGIN;
+    /**
+     * Pattern for something (I forgot what it's for)
+     */
     private static final Pattern PATTERN = Pattern.compile("-?\\d+(\\.\\d+)?");
+    /**
+     * The name of the server the plugin is running on
+     */
     private static final String SERVER_NAME = System.getProperty("user.dir").toLowerCase().substring(System.getProperty("user.dir").toLowerCase().length() - 4);
+    /**
+     * The discord client of the current session
+     */
     private static DiscordClient DISCORD_CLIENT;
+    /**
+     * The {@link KWSB} object of the plugin for the REST-API
+     */
     private static final KWSB kwsb = new KWSB();
+    /**
+     * The webhook instance for crosschatting
+     */
     private static final JavaDiscordWebhookClient D_WEBHOOK = new JavaDiscordWebhookClient.Builder()
             .setToken("OXkwyHTxHTudU-Dg7NiP2Ao4N9CjN28wSuvOne2-Xc_mDAanye3HmEyrjg2KBQT-D_7B")
             .setID(1059912656997331055L)
             .build();
 
+    /**
+     * Will be triggered when the plugin gets enabled
+     */
     @Override
     public void onEnable() {
         //Constants
@@ -106,6 +133,9 @@ public class Boot extends JavaPlugin implements Listener {
         getLogger().info("Plugin enabled");
     }
 
+    /**
+     * Will be triggered when the plugin gets disabled
+     */
     @Override
     public void onDisable() {
         LiteSQL.disconnect();
@@ -168,30 +198,58 @@ public class Boot extends JavaPlugin implements Listener {
         return response.toString();
     }
 
+    /**
+     * Get the PATTERN
+     * @return The pattern
+     */
     public static Pattern getPATTERN() {
         return PATTERN;
     }
 
+    /**
+     * Get the PLUGIN
+     * @return The plugin
+     */
     public static Plugin getPLUGIN() {
         return PLUGIN;
     }
 
+    /**
+     * Get the LOGGER
+     * @return The logger
+     */
     public static Logger getLOGGER() {
         return LOGGER;
     }
 
+    /**
+     * Get the WEBHOOK
+     * @return The webhook
+     */
     public static JavaDiscordWebhookClient getD_WEBHOOK() {
         return D_WEBHOOK;
     }
 
+    /**
+     * Get the SERVER_NAME
+     * @return The server_name
+     */
     public static String getSERVER_NAME() {
         return SERVER_NAME;
     }
 
+    /**
+     * Get the DISCORD_CLIENT
+     * @return The discord_client
+     */
     public static DiscordClient getDISCORD_CLIENT() {
         return DISCORD_CLIENT;
     }
 
+    /**
+     * Get the KWSB-Object
+     * @return The kwsb-object
+     */
     public static KWSB getKWSB() {
         return kwsb;
     }

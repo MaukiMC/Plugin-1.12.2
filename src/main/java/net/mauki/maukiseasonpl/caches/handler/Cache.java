@@ -4,11 +4,25 @@ import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiConsumer;
 
+/**
+ * Caches for anything (key - value)
+ * @param <K> The key of the element
+ * @param <V> The value of the element
+ */
 public class Cache<K, V> {
 
+    /**
+     * The actual size of the cache (for cache-internal processes)
+     */
     private int SIZE;
 
+    /**
+     * {@link HashMap} for the keys (actual index - key)
+     */
     private final HashMap<Integer, K> keys = new HashMap<>();
+    /**
+     * {@link HashMap} for the values (actual index - value)
+     */
     private final HashMap<Integer, V> values = new HashMap<>();
 
     /**
@@ -62,6 +76,11 @@ public class Cache<K, V> {
         return needed_index.get() != null;
     }
 
+    /**
+     * Get the index of a key
+     * @param key The unique key of a value
+     * @return The index of the key
+     */
     public int indexOf(K key) {
         AtomicReference<Integer> needed_index = new AtomicReference<>();
         keys.forEach((index, target_key) -> {
@@ -70,6 +89,10 @@ public class Cache<K, V> {
         return needed_index.get();
     }
 
+    /**
+     * Remove an element from the cache
+     * @param key The unique key of the element you want to remove
+     */
     public void remove(K key) {
         if(!keys.containsKey(key)) throw new IllegalArgumentException("Key was not found");
         int i = indexOf(key);

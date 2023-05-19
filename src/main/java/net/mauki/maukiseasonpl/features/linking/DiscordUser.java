@@ -5,6 +5,9 @@ import net.dv8tion.jda.api.entities.User;
 import net.mauki.maukiseasonpl.caches.Caches;
 import net.mauki.maukiseasonpl.core.Boot;
 
+/**
+ * The discord user of authentication
+ */
 public class DiscordUser {
 
     /**
