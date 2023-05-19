@@ -30,7 +30,7 @@ public class GamemodeCMD implements CommandExecutor {
             player = (Player) sender;
             selfExecution = true;
         } else if((Bukkit.getPlayer(args[1]) == null)) {
-            sender.sendMessage(ChatColor.RED + "Fehlgeschlagen! " + ChatColor.GOLD + args[1] + ChatColor.RED + " ist kein valider Spieler.");
+            sender.sendMessage(MessageConstants.USER_NOT_VALID(args[1]));
             return true;
         } else {
             player = Bukkit.getPlayer(args[1]);
@@ -47,7 +47,7 @@ public class GamemodeCMD implements CommandExecutor {
         }
 
         if(!player.isOnline()) {
-            sender.sendMessage(ChatColor.RED + "Fehlgeschlagen! " + ChatColor.GOLD + args[1] + ChatColor.RED + " ist nicht online.");
+            sender.sendMessage(MessageConstants.USER_NOT_ONLINE(args[1]));
             return true;
         }
 

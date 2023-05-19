@@ -20,3 +20,7 @@ commands:
     description: Öffne das Inventar eines Mitspielers
   endsee:
     description: Öffne deine Enderchest oder die eines Mitspielers
+  message:
+    aliases:
+      - msg
+    description: Sende einem Mitspieler eine Nachricht

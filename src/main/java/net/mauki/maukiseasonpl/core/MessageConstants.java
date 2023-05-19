@@ -20,6 +20,12 @@ public class MessageConstants {
         return ChatColor.RED + "Fehlgeschlagen! Ein unerwarteter Fehler ist aufgetreten.";
     }
 
+    public static String USER_NOT_VALID(String name) {
+        return ChatColor.RED + "Fehlgeschlagen! " + ChatColor.GOLD + name + ChatColor.RED + " ist kein valider Spieler.";
+    }
 
+    public static String USER_NOT_ONLINE(String name) {
+        return ChatColor.RED + "Fehlgeschlagen! " + ChatColor.GOLD + name + ChatColor.RED + " ist nicht online.";
+    }
 
 }

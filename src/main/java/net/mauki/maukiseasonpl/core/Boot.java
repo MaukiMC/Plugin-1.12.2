@@ -5,10 +5,7 @@ import de.mp.kwsb.internal.KWSB;
 import de.mp.kwsb.internal.Request;
 import de.mp.kwsb.internal.Response;
 import de.mp.kwsb.internal.handlers.GetRequestHandler;
-import net.mauki.maukiseasonpl.commands.EndseeCMD;
-import net.mauki.maukiseasonpl.commands.GamemodeCMD;
-import net.mauki.maukiseasonpl.commands.InvseeCMD;
-import net.mauki.maukiseasonpl.commands.LinkCMD;
+import net.mauki.maukiseasonpl.commands.*;
 import net.mauki.maukiseasonpl.dashboard.PlayersOnlineHandler;
 import net.mauki.maukiseasonpl.discord.DiscordClient;
 import net.mauki.maukiseasonpl.features.crosschat.ChatEvents;
@@ -61,6 +58,9 @@ public class Boot extends JavaPlugin implements Listener {
         registerCommand("link", new LinkCMD());
         registerCommand("invsee", new InvseeCMD());
         registerCommand("endsee", new EndseeCMD());
+        registerCommand("sudo", new SudoCMD());
+        registerCommand("msg", new MessageCMD());
+        registerCommand("message", new MessageCMD());
 
         //Listeners
         registerEvent(new CrossChat());
