@@ -1,5 +1,5 @@
 name: MaukiSeasonPL
-version: SNAPSHOT-v1.0.0_ALPHA
+version: SNAPSHOT-v1.17.1_ALPHA
 main: net.mauki.maukiseasonpl.core.Boot
 api-version: 1.12.2
 prefix: MaukiSeasonPL
@@ -30,3 +30,7 @@ commands:
     description: Signiere ein Item in deiner Hand
   unsign:
     description: Designiere das Item in deiner Hand
+  reply:
+    aliases:
+      - r
+    description: Antworte der Person, mit der du zuletzt geschrieben hast

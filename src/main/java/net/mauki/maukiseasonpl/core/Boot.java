@@ -66,6 +66,8 @@ public class Boot extends JavaPlugin implements Listener {
         registerCommand("heal", new HealCMD());
         registerCommand("sign", new SignCMD());
         registerCommand("unsign", new UnsignCMD());
+        registerCommand("reply", new ReplyCMD());
+        registerCommand("r", new ReplyCMD());
 
         //Listeners
         registerEvent(new CrossChat());

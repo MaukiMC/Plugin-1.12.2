@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'de.mp'
-version 'SNAPSHOT-v1.0.0_ALPHA'
+version 'SNAPSHOT-v1.17.1_ALPHA'
 
 repositories {
     mavenCentral()
