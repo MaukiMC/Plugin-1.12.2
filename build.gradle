@@ -91,5 +91,5 @@ jar {
         }
     }
     destinationDir = file("$rootDir/out/jar")
-    archiveFileName = 'Essentials.jar'
+    archiveFileName = 'MaukiSeasonPL.jar'
 }
