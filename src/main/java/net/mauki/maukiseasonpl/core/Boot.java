@@ -13,7 +13,9 @@ import net.mauki.maukiseasonpl.features.crosschat.ChatEvents;
 import net.mauki.maukiseasonpl.features.crosschat.Configuration;
 import net.mauki.maukiseasonpl.features.crosschat.CrossChat;
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -177,5 +179,9 @@ public class Boot extends JavaPlugin implements Listener {
 
     public static DiscordClient getDISCORD_CLIENT() {
         return DISCORD_CLIENT;
+    }
+
+    public static KWSB getKWSB() {
+        return kwsb;
     }
 }
