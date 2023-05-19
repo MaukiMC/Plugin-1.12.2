@@ -11,6 +11,15 @@ import org.bukkit.entity.Player;
  * Command to see a players inventory
  */
 public class InvseeCMD implements CommandExecutor {
+
+    /**
+     * The code which will be executed when command is being called
+     * @param sender The sender of the command
+     * @param command The command itself
+     * @param label The label of the command
+     * @param args The arguments which were sent with the command
+     * @return boolean if the command were performed successfully
+     */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(!(sender instanceof Player player)) {

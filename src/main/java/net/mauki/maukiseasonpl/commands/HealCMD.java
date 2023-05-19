@@ -18,6 +18,14 @@ public class HealCMD implements CommandExecutor {
      */
     CommandSender author;
 
+    /**
+     * The code which will be executed when command is being called
+     * @param sender The sender of the command
+     * @param command The command itself
+     * @param label The label of the command
+     * @param args The arguments which were sent with the command
+     * @return boolean if the command were performed successfully
+     */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(!(sender instanceof Player)) {

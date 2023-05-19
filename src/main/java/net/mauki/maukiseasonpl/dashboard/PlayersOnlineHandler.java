@@ -15,6 +15,13 @@ import java.util.Collection;
  * Endpoint for all online players
  */
 public class PlayersOnlineHandler extends GetRequestHandler {
+
+    /**
+     * The code which will be executed when endpoint is called
+     * @param request The {@link Request} object of the request
+     * @param response The {@link Response} object of the request
+     * @throws Exception Will be thrown when there was an error
+     */
     @Override
     public void onRequest(Request request, Response response) throws Exception {
         ArrayList<Object> al = Authenticator.authenticate(request, response);
