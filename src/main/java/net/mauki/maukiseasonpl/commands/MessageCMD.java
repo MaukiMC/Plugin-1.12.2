@@ -2,6 +2,7 @@ package net.mauki.maukiseasonpl.commands;
 
 import net.mauki.maukiseasonpl.core.MessageConstants;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -28,8 +29,8 @@ public class MessageCMD implements CommandExecutor {
         for(int i = 1; i < args.length; i++) {
             message.append(args[i]).append(" ");
         }
-        receiver.sendMessage("§6[§4"+sender.getName()+" §6-> §aDu§6]: §r"+ message);
-        sender.sendMessage("§6[§4Du §6-> §a"+receiver.getName()+"§6]: §r"+ message);
+        receiver.sendMessage(ChatColor.GOLD + "[" + ChatColor.DARK_RED + sender.getName() + ChatColor.GOLD + " -> " + ChatColor.GRAY + "Du" + ChatColor.GOLD + "]: " + ChatColor.RESET + message);
+        sender.sendMessage(ChatColor.GOLD + "[" + ChatColor.DARK_RED + "Du " + ChatColor.GOLD +"-> " + ChatColor.GRAY + receiver.getName() + ChatColor.GOLD + "]: " + ChatColor.RESET + message);
         return true;
     }
 }
