@@ -26,3 +26,7 @@ commands:
     description: Sende einem Mitspieler eine Nachricht
   heal:
     description: Heile dich oder einen deiner Mitspieler
+  sign:
+    description: Signiere ein Item in deiner Hand
+  unsign:
+    description: Designiere das Item in deiner Hand

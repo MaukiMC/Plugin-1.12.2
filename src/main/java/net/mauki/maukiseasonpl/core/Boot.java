@@ -6,6 +6,8 @@ import de.mp.kwsb.internal.Request;
 import de.mp.kwsb.internal.Response;
 import de.mp.kwsb.internal.handlers.GetRequestHandler;
 import net.mauki.maukiseasonpl.commands.*;
+import net.mauki.maukiseasonpl.commands.sign.SignCMD;
+import net.mauki.maukiseasonpl.commands.sign.UnsignCMD;
 import net.mauki.maukiseasonpl.dashboard.PlayersOnlineHandler;
 import net.mauki.maukiseasonpl.discord.DiscordClient;
 import net.mauki.maukiseasonpl.features.crosschat.ChatEvents;
@@ -62,6 +64,8 @@ public class Boot extends JavaPlugin implements Listener {
         registerCommand("msg", new MessageCMD());
         registerCommand("message", new MessageCMD());
         registerCommand("heal", new HealCMD());
+        registerCommand("sign", new SignCMD());
+        registerCommand("unsign", new UnsignCMD());
 
         //Listeners
         registerEvent(new CrossChat());
