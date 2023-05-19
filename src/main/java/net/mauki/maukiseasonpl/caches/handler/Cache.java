@@ -62,6 +62,21 @@ public class Cache<K, V> {
         return needed_index.get() != null;
     }
 
+    public int indexOf(K key) {
+        AtomicReference<Integer> needed_index = new AtomicReference<>();
+        keys.forEach((index, target_key) -> {
+            if(target_key == key) needed_index.set(index);
+        });
+        return needed_index.get();
+    }
+
+    public void remove(K key) {
+        if(!keys.containsKey(key)) throw new IllegalArgumentException("Key was not found");
+        int i = indexOf(key);
+        values.remove(i);
+        keys.remove(i);
+    }
+
     /**
      * Loop through all cache elements
      * @param action The action you want to perform with the keys and values
