@@ -1,0 +1,12 @@
+net.mauki.maukiseasonpl.caches
+net.mauki.maukiseasonpl.caches.handler
+net.mauki.maukiseasonpl.commands
+net.mauki.maukiseasonpl.commands.sign
+net.mauki.maukiseasonpl.core
+net.mauki.maukiseasonpl.dashboard
+net.mauki.maukiseasonpl.discord
+net.mauki.maukiseasonpl.discord.commands.handler
+net.mauki.maukiseasonpl.discord.commands.utils
+net.mauki.maukiseasonpl.entities
+net.mauki.maukiseasonpl.features.crosschat
+net.mauki.maukiseasonpl.features.linking
