@@ -48,7 +48,7 @@ public class ChatEvents extends ListenerAdapter implements Listener {
                         .setAuthor(event.getPlayer().getName() + " hat das Spiel verlassen.",null,  "https://crafatar.com/avatars/" + event.getPlayer().getUniqueId() + "?overlay")
                         .build()
         ).queue();
-        Caches.latestMessageCache.remove(event.getPlayer());
+        if(Caches.latestMessageCache.contains(event.getPlayer())) Caches.latestMessageCache.remove(event.getPlayer());
     }
 
 }

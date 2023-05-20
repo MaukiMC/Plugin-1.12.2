@@ -38,6 +38,20 @@ public class Cache<K, V> {
     }
 
     /**
+     * Add an element or update if it already exists
+     * @param key The key of the element you want to add
+     * @param value The value of the element you want to add
+     */
+    public void addOrUpdate(K key, V value) {
+        if(!contains(key)) {
+            add(key, value);
+            return;
+        }
+        int realIndex = realIndexOf(key);
+        values.put(realIndex, value);
+    }
+
+    /**
      * Get the value of the index
      * @param i The index of the value in the cache
      * @return The value of the index
@@ -60,6 +74,22 @@ public class Cache<K, V> {
         });
         if(needed_index.get() == null) throw new NullPointerException("Key was not found");
         return values.get(needed_index.get());
+    }
+
+    /**
+     * Get a value or a default value if the key is not known
+     * @param key The key of the value you want to get
+     * @param obj The default object that will be returned if the key is not found
+     * @return The value or the default value
+     */
+    public V getOrDefault(K key, V defaultValue) {
+        try {
+            V v = get(key);
+            if(v == null) return defaultValue;
+            return v;
+        } catch(NullPointerException ex) {
+            return defaultValue;
+        }
     }
 
     /**
@@ -90,12 +120,25 @@ public class Cache<K, V> {
     }
 
     /**
+     * Get the real index of a key
+     * @param key The key of the element you want the real index of
+     * @return The real index of the element
+     */
+    public int realIndexOf(K key) {
+        AtomicReference<Integer> i = new AtomicReference<>();
+        keys.forEach((index, target_key) -> {
+            if(target_key == key) i.set(index);
+        });
+        return i.get();
+    }
+
+    /**
      * Remove an element from the cache
      * @param key The unique key of the element you want to remove
      */
     public void remove(K key) {
         if(!keys.containsKey(key)) throw new IllegalArgumentException("Key was not found");
-        int i = indexOf(key);
+        int i = realIndexOf(key);
         values.remove(i);
         keys.remove(i);
     }

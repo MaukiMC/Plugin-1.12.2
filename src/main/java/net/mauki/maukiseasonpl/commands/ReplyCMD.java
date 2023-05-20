@@ -23,17 +23,21 @@ public class ReplyCMD implements CommandExecutor {
      */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Player receiver = Caches.latestMessageCache.get((Player) sender);
+        Player receiver = Caches.latestMessageCache.getOrDefault((Player) sender, null);
+        if(receiver == null) {
+            sender.sendMessage(ChatColor.RED + "Fehlgeschlagen! Du hast bisher keinen letzten Kontakt. Versuche " + ChatColor.GOLD + "/msg <name> <nachricht>");
+            return false;
+        }
         if(!receiver.isOnline()) {
             sender.sendMessage(MessageConstants.USER_NOT_ONLINE(args[0]));
             return false;
         }
         StringBuilder message = new StringBuilder();
-        for(int i = 1; i < args.length; i++) {
-            message.append(args[i]).append(" ");
-        }
+        for (String arg : args) message.append(arg).append(" ");
         receiver.sendMessage(ChatColor.GOLD + "[" + ChatColor.DARK_RED + sender.getName() + ChatColor.GOLD + " -> " + ChatColor.GRAY + "Du" + ChatColor.GOLD + "]: " + ChatColor.RESET + message);
         sender.sendMessage(ChatColor.GOLD + "[" + ChatColor.DARK_RED + "Du " + ChatColor.GOLD +"-> " + ChatColor.GRAY + receiver.getName() + ChatColor.GOLD + "]: " + ChatColor.RESET + message);
+        Caches.latestMessageCache.addOrUpdate((Player) sender, receiver);
+        Caches.latestMessageCache.addOrUpdate(receiver, (Player) sender);
         return true;
     }
 }

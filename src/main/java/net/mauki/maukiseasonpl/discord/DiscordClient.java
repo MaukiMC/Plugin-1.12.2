@@ -25,6 +25,7 @@ public class DiscordClient extends ListenerAdapter {
      * If you want to reload the bot
      * @deprecated
      */
+    @Deprecated
     private boolean reload = false;
     /**
      * The token of the bot
@@ -111,6 +112,7 @@ public class DiscordClient extends ListenerAdapter {
      * @return If the bot should be reloaded
      * @deprecated
      */
+    @Deprecated
     public boolean isReload() {
         return reload;
     }
@@ -120,6 +122,7 @@ public class DiscordClient extends ListenerAdapter {
      * @param reload If the bot should be reloaded
      * @deprecated
      */
+    @Deprecated
     public void setReload(boolean reload) {
         this.reload = reload;
     }
