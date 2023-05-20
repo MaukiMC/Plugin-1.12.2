@@ -5,6 +5,7 @@ import de.mp.kwsb.internal.KWSB;
 import de.mp.kwsb.internal.Request;
 import de.mp.kwsb.internal.Response;
 import de.mp.kwsb.internal.handlers.GetRequestHandler;
+import io.github.cdimascio.dotenv.Dotenv;
 import net.mauki.maukiseasonpl.commands.*;
 import net.mauki.maukiseasonpl.commands.sign.SignCMD;
 import net.mauki.maukiseasonpl.commands.sign.UnsignCMD;
@@ -40,6 +41,10 @@ public class Boot extends JavaPlugin implements Listener {
      */
     private static Logger LOGGER;
     /**
+     * The {@link Dotenv} object with environment variables for the project
+     */
+    private static final Dotenv dotenv = Dotenv.load();
+    /**
      * The {@link Plugin} object of the plugin
      */
     private static Plugin PLUGIN;
@@ -63,8 +68,8 @@ public class Boot extends JavaPlugin implements Listener {
      * The webhook instance for crosschatting
      */
     private static final JavaDiscordWebhookClient D_WEBHOOK = new JavaDiscordWebhookClient.Builder()
-            .setToken("OXkwyHTxHTudU-Dg7NiP2Ao4N9CjN28wSuvOne2-Xc_mDAanye3HmEyrjg2KBQT-D_7B")
-            .setID(1059912656997331055L)
+            .setToken(dotenv.get("WEBHOOK_TOKEN"))
+            .setID(Long.parseLong(dotenv.get("WEBHOOK_ID")))
             .build();
 
     /**
@@ -75,7 +80,7 @@ public class Boot extends JavaPlugin implements Listener {
         //Constants
         LOGGER = getLogger();
         PLUGIN = Boot.getPlugin(Boot.class);
-        DISCORD_CLIENT = new DiscordClient("MTEwODA3MzE5NjY2NzgwMTYwMQ.GqOmbO.cBQ1NG2dtul5l8l7W18kcwLdnsn7YV8j5iPLw4");
+        DISCORD_CLIENT = new DiscordClient(dotenv.get("BOT_TOKEN"));
 
         //Database
         LiteSQL.connect();
@@ -254,5 +259,13 @@ public class Boot extends JavaPlugin implements Listener {
      */
     public static KWSB getKWSB() {
         return kwsb;
+    }
+
+    /**
+     * Get the {@link Dotenv} object
+     * @return The dotenv object
+     */
+    public static Dotenv getDotenv() {
+        return dotenv;
     }
 }
