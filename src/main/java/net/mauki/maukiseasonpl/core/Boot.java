@@ -7,6 +7,8 @@ import de.mp.kwsb.internal.Response;
 import de.mp.kwsb.internal.handlers.GetRequestHandler;
 import io.github.cdimascio.dotenv.Dotenv;
 import net.mauki.maukiseasonpl.commands.*;
+import net.mauki.maukiseasonpl.commands.overwirtten.ReloadCMD;
+import net.mauki.maukiseasonpl.commands.overwirtten.StopCMD;
 import net.mauki.maukiseasonpl.commands.sign.SignCMD;
 import net.mauki.maukiseasonpl.commands.sign.UnsignCMD;
 import net.mauki.maukiseasonpl.dashboard.PlayersOnlineHandler;
@@ -28,6 +30,8 @@ import java.io.File;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
@@ -88,20 +92,18 @@ public class Boot extends JavaPlugin implements Listener {
 
         //Commands
         registerCommand("gamemode", new GamemodeCMD());
-        registerCommand("gm", new GamemodeCMD());
         registerCommand("link", new LinkCMD());
         registerCommand("invsee", new InvseeCMD());
         registerCommand("endsee", new EndseeCMD());
         registerCommand("sudo", new SudoCMD());
-        registerCommand("msg", new MessageCMD());
         registerCommand("message", new MessageCMD());
         registerCommand("heal", new HealCMD());
         registerCommand("sign", new SignCMD());
         registerCommand("unsign", new UnsignCMD());
         registerCommand("reply", new ReplyCMD());
-        registerCommand("r", new ReplyCMD());
         registerCommand("sleep", new SleepCMD());
         registerCommand("downfall", new WeatherCMD());
+        registerCommand("stop", new StopCMD());
 
         //Listeners
         registerEvent(new CrossChat());

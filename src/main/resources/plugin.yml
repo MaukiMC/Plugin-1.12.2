@@ -40,3 +40,5 @@ commands:
     description: Überspringe die Nacht
   downfall:
     description: Tanze einen Sonnentanz und überspringe das Unwetter
+  stop:
+    description: Stoppe den Server

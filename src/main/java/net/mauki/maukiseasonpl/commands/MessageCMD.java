@@ -34,6 +34,10 @@ public class MessageCMD implements CommandExecutor {
             sender.sendMessage(MessageConstants.USER_NOT_VALID(args[0]));
             return false;
         }
+        if(receiver.getUniqueId() == ((Player) sender).getUniqueId()) {
+            sender.sendMessage(ChatColor.RED + "Fehlgeschlagen! Inwiefern soll es funktionieren, dir selbst zu schreiben?");
+            return false;
+        }
         if(!receiver.isOnline()) {
             sender.sendMessage(MessageConstants.USER_NOT_ONLINE(args[0]));
             return false;

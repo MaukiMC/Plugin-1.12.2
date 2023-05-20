@@ -15,7 +15,9 @@ public class Configuration extends ListenerAdapter implements Listener {
 
     /**
      * Reload the webserver
+     * @deprecated
      */
+    @Deprecated
     public void reload() {
         Boot.getLOGGER().info("Reloading the server...");
         Boot.getDISCORD_CLIENT().getJDA().shutdownNow();
@@ -27,13 +29,16 @@ public class Configuration extends ListenerAdapter implements Listener {
      * @param event The event that will be triggered before a command will be performed
      */
     @EventHandler
-    public void onReloadCommand(PlayerCommandPreprocessEvent event) {
-        String cmd = event.getMessage().split(" ")[0].replaceAll("(?i)bukkit", "");
-        if(!((cmd.equalsIgnoreCase("/reload") || cmd.equalsIgnoreCase("/rl")))) return;
-        event.setCancelled(true);
-        event.getPlayer().sendMessage(ChatColor.RED + "Befehl deaktiviert!");
-/*        event.getPlayer().sendMessage(ChatColor.GREEN + "Server wird neu geladen!");
-        reload();*/
+    public void onCommand(PlayerCommandPreprocessEvent event) {
+        String cmd = event.getMessage().split(" ")[0].replaceAll("(?i)bukkit", "").replace("/", "");
+        switch (cmd) {
+            case "reload", "rl" -> {
+                event.setCancelled(true);
+                event.getPlayer().sendMessage(ChatColor.RED + "Befehl deaktiviert! Verwende /stop <zeit/now>");
+            }
+//                event.getPlayer().sendMessage(ChatColor.GREEN + "Server wird neu geladen!");
+//                reload();
+        }
     }
 
     /**
@@ -41,13 +46,16 @@ public class Configuration extends ListenerAdapter implements Listener {
      * @param event The event that will be triggered before a command will be performed
      */
     @EventHandler
-    public void onReloadCommand(ServerCommandEvent event) {
+    public void onCommand(ServerCommandEvent event) {
         String cmd = event.getCommand().split(" ")[0].replaceAll("(?i)bukkit", "");
-        if(!((cmd.equalsIgnoreCase("reload") || cmd.equalsIgnoreCase("rl")))) return;
-        event.setCancelled(true);
-        event.getSender().sendMessage(ChatColor.RED + "Befehl deaktiviert!");
-/*        event.getSender().sendMessage(ChatColor.GREEN + "Server wird neu geladen!");
-        reload();*/
+        switch (cmd) {
+            case "reload", "rl" -> {
+                event.setCancelled(true);
+                event.getSender().sendMessage(ChatColor.RED + "Befehl deaktiviert! Verwende /stop <zeit/now>");
+            }
+//                event.getSender().sendMessage(ChatColor.GREEN + "Server wird neu geladen!");
+//                reload();
+        }
     }
 
 }
