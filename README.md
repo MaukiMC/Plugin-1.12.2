@@ -4,8 +4,8 @@
 [version]: https://img.shields.io/static/v1?label=Download&message=SNAPSHOT-v1.18.0_ALPHA&color=blue
 [download]: https://github.com/MaukiMC/Plugin-1.12.2/releases/tag/SNAPSHOT-v1.18.0_ALPHA
 
-[wiki]: https://img.shields.io/static/v1?label=Documentation&message=Getting%20started&color=orange
-[wikilink]: https://github.com/MaukiMC/Plugin-1.12.2#introduction
+[wiki]: https://img.shields.io/static/v1?label=Javadoc&message=Overview&color=orange
+[wikilink]: https://maukimc.github.io/Plugin-1.12.2/
 
 [ ![version][] ][download]
 [ ![license-shield][] ][license]
