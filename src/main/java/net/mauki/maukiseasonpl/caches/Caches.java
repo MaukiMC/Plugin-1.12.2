@@ -5,6 +5,8 @@ import net.mauki.maukiseasonpl.caches.handler.Cache;
 import net.mauki.maukiseasonpl.entities.InternalPlayer;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.UUID;
 
 /**
@@ -24,5 +26,12 @@ public class Caches {
      * The cache for the latest message of a {@link Player}
      */
     public static Cache<Player, Player> latestMessageCache = new Cache<>();
-
+    /**
+     * The cache of all {@link Player}s that want to skip the night
+     */
+    public static Collection<Player> playerSleepState = new ArrayList<>();
+    /**
+     * The cache of all {@link Player}s that want to skip the current weather
+     */
+    public static Collection<Player> playerWeatherState = new ArrayList<>();
 }

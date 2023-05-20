@@ -79,7 +79,7 @@ public class Cache<K, V> {
     /**
      * Get a value or a default value if the key is not known
      * @param key The key of the value you want to get
-     * @param obj The default object that will be returned if the key is not found
+     * @param defaultValue The default object that will be returned if the key is not found
      * @return The value or the default value
      */
     public V getOrDefault(K key, V defaultValue) {
@@ -141,6 +141,15 @@ public class Cache<K, V> {
         int i = realIndexOf(key);
         values.remove(i);
         keys.remove(i);
+    }
+
+    /**
+     * Clears the entire cache
+     */
+    public void clear() {
+        values.clear();
+        keys.clear();
+        SIZE = 0;
     }
 
     /**
