@@ -34,3 +34,5 @@ commands:
     aliases:
       - r
     description: Antworte der Person, mit der du zuletzt geschrieben hast
+  sudo:
+    description: Gebe dich als einen anderen Spieler aus und führe Befehle aus und schreibe
