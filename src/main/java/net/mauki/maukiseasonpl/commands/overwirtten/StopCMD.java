@@ -33,10 +33,6 @@ public class StopCMD implements CommandExecutor {
             sender.sendMessage(MessageConstants.NOT_AN_OPERATOR());
             return false;
         }
-        if(shutting_down) {
-            sender.sendMessage(ChatColor.RED + "Der Server befindet sich bereits im Herunterfahrmodus.");
-            return false;
-        }
         if(args.length != 1 && args.length != 0) {
             sender.sendMessage(MessageConstants.INVALID_SYNTAX());
             return false;
@@ -48,6 +44,10 @@ public class StopCMD implements CommandExecutor {
                 return true;
             }
             sender.sendMessage(MessageConstants.INVALID_SYNTAX());
+            return false;
+        }
+        if(shutting_down) {
+            sender.sendMessage(ChatColor.RED + "Der Server befindet sich bereits im Herunterfahrmodus.");
             return false;
         }
         long time = (args.length == 1 ? Long.parseLong(args[0]) : 3);
