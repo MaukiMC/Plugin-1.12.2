@@ -1,5 +1,5 @@
 name: MaukiSeasonPL
-version: SNAPSHOT-v1.17.1_ALPHA
+version: SNAPSHOT-v1.18.0_ALPHA
 main: net.mauki.maukiseasonpl.core.Boot
 api-version: 1.12.2
 prefix: MaukiSeasonPL
