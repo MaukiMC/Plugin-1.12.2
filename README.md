@@ -1,8 +1,8 @@
 [license]: https://github.com/MaukiMC/Plugin-1.12.2/blob/main/LICENSE
 [license-shield]: https://img.shields.io/badge/License-GPL3.0-green.svg
 
-[version]: https://img.shields.io/static/v1?label=Download&message=SNAPSHOT-v1.17.1_ALPHA&color=blue
-[download]: https://github.com/MaukiMC/Plugin-1.12.2/releases/tag/SNAPSHOT-v1.17.1_ALPHA
+[version]: https://img.shields.io/static/v1?label=Download&message=SNAPSHOT-v1.18.0_ALPHA&color=blue
+[download]: https://github.com/MaukiMC/Plugin-1.12.2/releases/tag/SNAPSHOT-v1.18.0_ALPHA
 
 [wiki]: https://img.shields.io/static/v1?label=Documentation&message=Getting%20started&color=orange
 [wikilink]: https://github.com/MaukiMC/Plugin-1.12.2#introduction
