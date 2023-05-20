@@ -5,7 +5,7 @@
 [download]: https://github.com/MaukiMC/Plugin-1.12.2/releases/tag/SNAPSHOT-v1.17.1_ALPHA
 
 [wiki]: https://img.shields.io/static/v1?label=Documentation&message=Getting%20started&color=orange
-[wikilink]: https://github.com/MaukiMC/Plugin-1.12.2/README.md#introduction
+[wikilink]: https://github.com/MaukiMC/Plugin-1.12.2#introduction
 
 [ ![version][] ][download]
 [ ![license-shield][] ][license]
@@ -40,5 +40,6 @@ This plugin uses the following dependencies (group:name:version)
 - net.dv8tion:JDA:5.0.0-beta.2
 - org.xerial:sqlite-jdbc:3.40.1.0
 - com.github.Mokulu:discord-oauth2-api:1.0.2
+- io.github.cdimascio:dotenv-java:3.0.0
 
 This plugin also uses [JavaDiscordWebhookClient](https://github.com/MiauRizius/JavaDiscordWebhookClient) made by [MiauRizius](https://github.com/MiauRizius)
