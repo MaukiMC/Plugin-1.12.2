@@ -75,6 +75,10 @@ public class StopCMD implements CommandExecutor {
         return true;
     }
 
+    /**
+     * Manage the sopping-process when only one minute is left
+     * @throws InterruptedException Will be thrown when there was an error during stopping
+     */
     public void oneMinute() throws InterruptedException {
         int sec = 60;
         Bukkit.broadcastMessage(ChatColor.RED + "Server fährt in " + ChatColor.YELLOW + "1" + ChatColor.RED + " Minute herunter");

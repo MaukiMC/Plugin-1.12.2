@@ -21,24 +21,28 @@ public interface InternalPlayer {
     /**
      * Get the {@link Player} object of the player
      * @return The {@link Player} object
+     * @throws Exception Will be thrown when an unexpected error occurs
      */
     Player getPlayer() throws Exception;
 
     /**
      * Get the (linking-)code of the player
      * @return The code object
+     * @throws Exception Will be thrown when an unexpected error occurs
      */
     String getCode() throws Exception;
 
     /**
      * Get the {@link User} object of the player
      * @return The {@link User} object
+     * @throws Exception Will be thrown when an unexpected error occurs
      */
     User getUser() throws Exception;
 
     /**
      * Parse the object to an {@link JSONObject}
      * @return The parsed {@link JSONObject} of the object
+     * @throws Exception Will be thrown when an unexpected error occurs
      */
     default JSONObject toJSON() throws Exception {
         return new JSONObject()
@@ -50,6 +54,7 @@ public interface InternalPlayer {
     /**
      * Parse the object to an {@link String} (JSON-format)
      * @return The parsed string of the object (JSON-format)
+     * @throws Exception Will be thrown when an unexpected error occurs
      */
     default String asString() throws Exception {
         return toJSON().toString();
