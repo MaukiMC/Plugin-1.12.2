@@ -14,9 +14,14 @@ public interface WSSAPIEndpoint {
     /**
      * The code that will execute when the endpoint is called
      * @param wssRequestInformation The information of the request
+     * @throws Exception Will be thrown when there was an error
      */
     void handle(WSSRequestInformation wssRequestInformation) throws Exception;
 
+    /**
+     * The structure of the request body
+     * @return The {@link JSONStructure} object
+     */
     JSONStructure structure();
 
     /**
