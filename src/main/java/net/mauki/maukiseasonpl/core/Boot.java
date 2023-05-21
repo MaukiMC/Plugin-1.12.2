@@ -1,37 +1,27 @@
 package net.mauki.maukiseasonpl.core;
 
 import de.mp.jdwc.internal.JavaDiscordWebhookClient;
-import de.mp.kwsb.internal.KWSB;
-import de.mp.kwsb.internal.Request;
-import de.mp.kwsb.internal.Response;
-import de.mp.kwsb.internal.handlers.GetRequestHandler;
 import io.github.cdimascio.dotenv.Dotenv;
 import net.mauki.maukiseasonpl.commands.*;
-import net.mauki.maukiseasonpl.commands.overwirtten.ReloadCMD;
 import net.mauki.maukiseasonpl.commands.overwirtten.StopCMD;
 import net.mauki.maukiseasonpl.commands.sign.SignCMD;
 import net.mauki.maukiseasonpl.commands.sign.UnsignCMD;
-import net.mauki.maukiseasonpl.dashboard.PlayersOnlineHandler;
+import net.mauki.maukiseasonpl.dashboard.wss.BaseWebsocketServer;
 import net.mauki.maukiseasonpl.discord.DiscordClient;
 import net.mauki.maukiseasonpl.features.crosschat.ChatEvents;
 import net.mauki.maukiseasonpl.features.crosschat.Configuration;
 import net.mauki.maukiseasonpl.features.crosschat.CrossChat;
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
@@ -65,9 +55,9 @@ public class Boot extends JavaPlugin implements Listener {
      */
     private static DiscordClient DISCORD_CLIENT;
     /**
-     * The {@link KWSB} object of the plugin for the REST-API
+     * The {@link BaseWebsocketServer} for the API
      */
-    private static final KWSB kwsb = new KWSB();
+    private static BaseWebsocketServer wss;
     /**
      * The webhook instance for crosschatting
      */
@@ -110,25 +100,10 @@ public class Boot extends JavaPlugin implements Listener {
         registerEvent(new ChatEvents());
         registerEvent(new Configuration());
 
-        //REST-API
-        kwsb.addRequestHandler("/", new GetRequestHandler() {
-            @Override
-            public void onRequest(Request request, Response response) throws Exception {
-                response.send(new JSONObject().put("code", 200).put("message", "OK!").toString());
-            }
-        });
-        kwsb.addRequestHandler("/online_players", new PlayersOnlineHandler());
-
-        new Thread(() -> {
-            try {
-                kwsb.listen(8080).whenComplete((event, throwable) -> {
-                    if(throwable != null) throwable.printStackTrace();
-                    Boot.getLOGGER().info("API started");
-                });
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }).start();
+        //WSS-API
+        wss = new BaseWebsocketServer(dotenv.get("ws_host"), 8887);
+        wss.setConnectionLostTimeout(60);
+        new Thread(() -> wss.run()).start();
 
         //Discord
         new Thread(() -> {
@@ -256,18 +231,18 @@ public class Boot extends JavaPlugin implements Listener {
     }
 
     /**
-     * Get the KWSB-Object
-     * @return The kwsb-object
-     */
-    public static KWSB getKWSB() {
-        return kwsb;
-    }
-
-    /**
      * Get the {@link Dotenv} object
      * @return The dotenv object
      */
     public static Dotenv getDotenv() {
         return dotenv;
+    }
+
+    /**
+     * Get the {@link BaseWebsocketServer} object
+     * @return The object
+     */
+    public static BaseWebsocketServer getWSS() {
+        return wss;
     }
 }

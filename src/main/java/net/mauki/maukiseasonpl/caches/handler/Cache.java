@@ -1,6 +1,10 @@
 package net.mauki.maukiseasonpl.caches.handler;
 
-import java.util.HashMap;
+import org.json.JSONObject;
+
+import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiConsumer;
 
@@ -52,6 +56,46 @@ public class Cache<K, V> {
     }
 
     /**
+     * Add an element and remove it after a specific period of time
+     * @param key The key of the element
+     * @param value The value of the element
+     * @param millis The time in milliseconds
+     * @return A {@link CompletionStage} object which will be triggered after the element got removed or an error occurred
+     */
+    public CompletionStage<JSONObject> addAndRemove(K key, V value, long millis) {
+        AtomicReference<CompletableFuture<JSONObject>> futureAtomicReference = new AtomicReference<>();
+        add(key, value);
+        int index = realIndexOf(key);
+        new Thread(() -> {
+            try {
+                Thread.sleep(millis);
+                if(!this.contains(key)) {
+                    CompletableFuture<JSONObject> future = new CompletableFuture<>();
+                    future.complete(new JSONObject()
+                            .put("success", false)
+                            .put("reason", "Element was not longer in cache")
+                            .put("realIndex", index));
+                    futureAtomicReference.set(future);
+                    return;
+                }
+                remove(key);
+                CompletableFuture<JSONObject> future = new CompletableFuture<>();
+                future.complete(new JSONObject().put("success", true));
+                futureAtomicReference.set(future);
+            } catch (InterruptedException e) {
+                CompletableFuture<JSONObject> future = new CompletableFuture<>();
+                future.complete(new JSONObject()
+                        .put("success", false)
+                        .put("reason", e.getMessage())
+                        .put("realIndex", index));
+                futureAtomicReference.set(future);
+                e.printStackTrace();
+            }
+        }).start();
+        return futureAtomicReference.get();
+    }
+
+    /**
      * Get the value of the index
      * @param i The index of the value in the cache
      * @return The value of the index
@@ -90,6 +134,19 @@ public class Cache<K, V> {
         } catch(NullPointerException ex) {
             return defaultValue;
         }
+    }
+
+    /**
+     * Get all keys of a value
+     * @param value The value of
+     * @return A {@link Collection} with all keys
+     */
+    public Collection<K> getKeysOfValue(V value) {
+        Collection<K> keySet = new ArrayList<>();
+        values.forEach((index, v) -> {
+            if(value == v) keySet.add(keys.get(index));
+        });
+        return keySet;
     }
 
     /**
@@ -162,6 +219,22 @@ public class Cache<K, V> {
         for(int i = 0; i < size(); i++) {
             action.accept(keys.get(i), values.get(i));
         }
+    }
+
+    /**
+     * Get a {@link Collection} with all keys
+     * @return The collection
+     */
+    public Collection<K> keys() {
+        return new ArrayList<>(keys.values());
+    }
+
+    /**
+     * Get a {@link Collection} with all values
+     * @return The collection
+     */
+    public Collection<V> values() {
+        return new ArrayList<>(values.values());
     }
 
     /**

@@ -16,6 +16,8 @@ public class Caches {
 
     /**
      * The cache for all {@link User}s
+     * {@link String} = ID
+     * {@link User} = The user
      */
     public static Cache<String, User> discordUserCache = new Cache<>();
     /**

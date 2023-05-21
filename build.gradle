@@ -34,6 +34,7 @@ dependencies {
     implementation 'org.xerial:sqlite-jdbc:3.40.1.0'
     implementation 'com.github.Mokulu:discord-oauth2-api:1.0.2'
     implementation 'io.github.cdimascio:dotenv-java:3.0.0'
+    implementation 'org.java-websocket:Java-WebSocket:1.5.3'
 
     extraLibs fileTree(include: ['*.jar'], dir: './src/main/resources')
     extraLibs 'de.taimos:totp:1.0'
@@ -43,6 +44,7 @@ dependencies {
     extraLibs 'org.xerial:sqlite-jdbc:3.40.1.0'
     extraLibs 'com.github.Mokulu:discord-oauth2-api:1.0.2'
     extraLibs 'io.github.cdimascio:dotenv-java:3.0.0'
+    extraLibs 'org.java-websocket:Java-WebSocket:1.5.3'
 }
 
 def targetJavaVersion = 17

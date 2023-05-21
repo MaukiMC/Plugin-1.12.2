@@ -1,11 +1,8 @@
 package net.mauki.maukiseasonpl.dashboard;
 
-import de.mp.kwsb.internal.Request;
-import de.mp.kwsb.internal.Response;
-import de.mp.kwsb.internal.handlers.errors.HttpException;
 import net.dv8tion.jda.api.entities.User;
 import net.mauki.maukiseasonpl.core.LiteSQL;
-import net.mauki.maukiseasonpl.features.linking.DiscordUser;
+import net.mauki.maukiseasonpl.entities.DiscordUser;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.json.JSONObject;
@@ -22,57 +19,57 @@ public class Authenticator {
 
     /**
      * Authenticates a user
-     * @param request The {@link Request} object of the web-request
-     * @param response The {@link Response} object of the web-request
+     * @param access_token The provided access_token of the user
      * @return An {@link ArrayList} with a {@link User} object on index 0 and {@link OfflinePlayer} on index 1
-     * @throws HttpException Will be thrown when there was an error with the Web
      * @throws SQLException Will be thrown when there was an error with the database
      */
-    public static ArrayList<Object> authenticate(Request request, Response response) throws HttpException, SQLException {
+    public static ArrayList<Object> authenticate(String access_token) throws Exception {
+
+        ArrayList<Object> al = new ArrayList<>();
+
         //Access-Token
-        String access_token = request.getHeader("Authorization");
         if(access_token == null) {
-            response.send(new JSONObject()
+            al.add(new JSONObject()
                     .put("code", 401)
                     .put("message", "No access-token given").toString());
-            return null;
+            return al;
         }
 
         //Discord-User
         User discord_user = DiscordUser.retrieveUserByAccessToken(access_token);
         if(discord_user == null) {
-            response.send(new JSONObject()
+            al.add(new JSONObject()
                     .put("code", 401)
                     .put("message", "Invalid access-token").toString());
-            return null;
+            return al;
         }
 
         //Database Entry
         ResultSet rs = LiteSQL.onQuery("SELECT * FROM connections WHERE discord_id = '" + discord_user.getId() + "'");
         if(rs == null) {
-            response.send(new JSONObject()
+            al.add(new JSONObject()
                     .put("code", 500)
                     .put("message", "Internal Server Error").toString());
-            return null;
+            return al;
         }
 
         if(!rs.next()) {
-            response.send(new JSONObject()
+            al.add(new JSONObject()
                     .put("code", 401)
                     .put("message", "Couldn't find the associated minecraft account").toString());
-            return null;
+            return al;
         }
 
         //Succeeded request
         UUID uuid = UUID.fromString(rs.getString("uuid"));
         OfflinePlayer minecraft_player = Bukkit.getOfflinePlayer(uuid);
         if(minecraft_player == null) {
-            response.send(new JSONObject()
+            al.add(new JSONObject()
                     .put("code", 401)
                     .put("message", "Couldn't find the associated minecraft account").toString());
-            return null;
+            return al;
         }
-        ArrayList<Object> al = new ArrayList<>();
+
         al.add(discord_user);
         al.add(minecraft_player);
         return al;
