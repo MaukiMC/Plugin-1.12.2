@@ -37,8 +37,7 @@ public class CrossChat extends ListenerAdapter implements Listener {
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         if(!event.isFromGuild()) return;
-        if(event.getGuild().getIdLong() != 947597599513411615L) return;
-        if(event.getChannel().asTextChannel().getIdLong() != 983789134407663646L) return;
+        if(event.getChannel().asTextChannel().getIdLong() != 983789134407663646L && event.getChannel().asTextChannel().getIdLong() != 1109934419508203641L) return;
         if(event.getAuthor().isBot() || event.getAuthor().isSystem()) return;
         Bukkit.broadcastMessage(ChatColor.GRAY + "[" + ChatColor.RESET + ChatColor.AQUA + "Discord - " + event.getAuthor().getAsTag() + ChatColor.RESET + ChatColor.GRAY + "]: " +
                 event.getMessage().getContentRaw());
