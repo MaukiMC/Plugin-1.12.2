@@ -6,6 +6,7 @@ import net.mauki.maukiseasonpl.dashboard.wss.endpoints.handler.WSSAPIEndpoint;
 import net.mauki.maukiseasonpl.dashboard.wss.endpoints.handler.WSSRequestInformation;
 import net.mauki.maukiseasonpl.entities.InternalPlayer;
 import org.json.JSONObject;
+import org.json.simple.JSONArray;
 
 /**
  * WSS-Endpoint for authentication with the API
@@ -35,6 +36,10 @@ public class AuthenticateWSS implements WSSAPIEndpoint {
         Caches.internalPlayerCache.addOrUpdate(internalPlayer.getPlayer().getUniqueId(), internalPlayer);
         Boot.getWSS().getAuthenticationRequired().remove(wssRequestInformation.getWebsocket().getRemoteSocketAddress().getHostName());
         Boot.getWSS().getSessions().addOrUpdate(wssRequestInformation.getWebsocket().getRemoteSocketAddress().getHostName(), internalPlayer);
+        wssRequestInformation.getWebsocket().send(new JSONObject()
+                .put("code", 200)
+                .put("message", "Access granted")
+                .put("requester", internalPlayer.toJSON()).toString());
     }
 
     /**

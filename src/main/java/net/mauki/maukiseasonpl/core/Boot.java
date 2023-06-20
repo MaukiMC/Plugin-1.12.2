@@ -101,7 +101,7 @@ public class Boot extends JavaPlugin implements Listener {
         registerEvent(new Configuration());
 
         //WSS-API
-        wss = new BaseWebsocketServer(dotenv.get("ws_host"), 8887);
+        wss = new BaseWebsocketServer(dotenv.get("WS_HOST"), 8887);
         wss.setConnectionLostTimeout(60);
         new Thread(() -> wss.run()).start();
 
