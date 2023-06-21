@@ -99,6 +99,7 @@ public class Boot extends JavaPlugin implements Listener {
         registerEvent(new CrossChat());
         registerEvent(new ChatEvents());
         registerEvent(new Configuration());
+        registerEvent(new SleepCMD());
 
         //WSS-API
         wss = new BaseWebsocketServer(dotenv.get("WS_HOST"), 8887);

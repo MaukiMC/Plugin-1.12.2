@@ -26,7 +26,7 @@ public class ChatEvents extends ListenerAdapter implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         event.setJoinMessage(ChatColor.GRAY + event.getPlayer().getName() + " ist dem Spiel beigetreten.");
         if(!Boot.getSERVER_NAME().equalsIgnoreCase("pa01")) return;
-        Objects.requireNonNull(Boot.getDISCORD_CLIENT().getJDA().getTextChannelById(983789134407663646L)).sendMessageEmbeds(
+        Objects.requireNonNull(Boot.getDISCORD_CLIENT().getJDA().getTextChannelById(1109934419508203641L)).sendMessageEmbeds(
                 new EmbedBuilder()
                         .setColor(Color.green)
                         .setAuthor(event.getPlayer().getName() + " ist dem Spiel beigetreten.",null,  "https://crafatar.com/avatars/" + event.getPlayer().getUniqueId() + "?overlay")
@@ -42,7 +42,7 @@ public class ChatEvents extends ListenerAdapter implements Listener {
     public void onPlayerLeave(PlayerQuitEvent event) {
         event.setQuitMessage(ChatColor.GRAY + event.getPlayer().getName() + " hat das Spiel verlassen.");
         if(!Boot.getSERVER_NAME().equalsIgnoreCase("pa01")) return;
-        Objects.requireNonNull(Boot.getDISCORD_CLIENT().getJDA().getTextChannelById(983789134407663646L)).sendMessageEmbeds(
+        Objects.requireNonNull(Boot.getDISCORD_CLIENT().getJDA().getTextChannelById(1109934419508203641L)).sendMessageEmbeds(
                 new EmbedBuilder()
                         .setColor(Color.red)
                         .setAuthor(event.getPlayer().getName() + " hat das Spiel verlassen.",null,  "https://crafatar.com/avatars/" + event.getPlayer().getUniqueId() + "?overlay")
