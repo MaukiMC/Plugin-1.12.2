@@ -40,7 +40,7 @@ public class WeatherCMD implements CommandExecutor {
             return false;
         }
         Caches.playerWeatherState.add(player);
-        Bukkit.broadcastMessage(ChatColor.GOLD + player.getName() + ChatColor.GREEN + "tanzt den Sonnentanz um das Unwetter zu vertreiben. " + ChatColor.YELLOW + "(" + Caches.playerWeatherState.size() + "/" + ((Bukkit.getOnlinePlayers().size()/2)+1) + ")");
+        Bukkit.broadcastMessage(ChatColor.GOLD + player.getName() + ChatColor.GREEN + " tanzt den Sonnentanz um das Unwetter zu vertreiben. " + ChatColor.YELLOW + "(" + Caches.playerWeatherState.size() + "/" + ((Bukkit.getOnlinePlayers().size()/2)+1) + ")");
         if(Caches.playerWeatherState.size() >= (Bukkit.getOnlinePlayers().size()/2)+1) {
             Boot.getPLUGIN().getServer().dispatchCommand(Boot.getPLUGIN().getServer().getConsoleSender(), "weather clear");
             Caches.playerWeatherState.clear();
