@@ -67,14 +67,4 @@ public class Configuration extends ListenerAdapter implements Listener {
         }
     }
 
-    @Override
-    public void onReady(@NotNull ReadyEvent event) {
-        Objects.requireNonNull(event.getJDA().getTextChannelById(1109253583523807313L)).sendMessageEmbeds(new EmbedBuilder()
-                .setTitle("Minecraft-Übersicht")
-                .setDescription("Um auf dem Minecraft-Server spielen zu können, trete dem **[Mauki Community Server](https://discord.gg/7fVXR2g7DG) bei!**")
-                .setColor(Color.decode("#"))
-                .setFooter("https://mauki.net")
-                .setThumbnail(event.getJDA().getSelfUser().getEffectiveAvatarUrl())
-                .build()).addActionRow(Button.link("https://discord.gg/7fVXR2g7DG", "Mauki Community Server")).queue();
-    }
 }

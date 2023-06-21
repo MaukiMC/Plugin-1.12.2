@@ -1,16 +1,21 @@
 package net.mauki.maukiseasonpl.discord.commands.handler;
 
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.session.ShutdownEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 import net.mauki.maukiseasonpl.core.Boot;
+import net.mauki.maukiseasonpl.discord.DiscordClient;
 import net.mauki.maukiseasonpl.discord.commands.utils.LinkCommand;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
