@@ -24,7 +24,7 @@ public class ReloadCMD implements CommandExecutor {
      */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(sender instanceof Player player && !player.isOp()) {
+        if(sender instanceof Player && !sender.isOp()) {
             sender.sendMessage(MessageConstants.NOT_AN_OPERATOR());
             return false;
         }

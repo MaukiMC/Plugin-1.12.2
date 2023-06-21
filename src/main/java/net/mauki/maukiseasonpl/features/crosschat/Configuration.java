@@ -32,7 +32,8 @@ public class Configuration extends ListenerAdapter implements Listener {
     public void onCommand(PlayerCommandPreprocessEvent event) {
         String cmd = event.getMessage().split(" ")[0].replaceAll("(?i)bukkit", "").replace("/", "");
         switch (cmd) {
-            case "reload", "rl" -> {
+            case "reload":
+            case "rl": {
                 event.setCancelled(true);
                 event.getPlayer().sendMessage(ChatColor.RED + "Befehl deaktiviert! Verwende /stop <zeit/now>");
             }
@@ -49,7 +50,8 @@ public class Configuration extends ListenerAdapter implements Listener {
     public void onCommand(ServerCommandEvent event) {
         String cmd = event.getCommand().split(" ")[0].replaceAll("(?i)bukkit", "");
         switch (cmd) {
-            case "reload", "rl" -> {
+            case "reload":
+            case "rl": {
                 event.setCancelled(true);
                 event.getSender().sendMessage(ChatColor.RED + "Befehl deaktiviert! Verwende /stop <zeit/now>");
             }

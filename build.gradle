@@ -47,7 +47,7 @@ dependencies {
     extraLibs 'org.java-websocket:Java-WebSocket:1.5.3'
 }
 
-def targetJavaVersion = 17
+def targetJavaVersion = 10
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion
@@ -70,7 +70,7 @@ tasks.withType(JavaCompile).configureEach {
 
 task copypa01(type: Copy) {
     from jar
-    into "D:\\MaukiSeason\\pa01\\plugins"
+    into "D:\\PaperMC-Net1\\Mod-Server\\plugins"
 }
 
 task copypa02(type: Copy) {

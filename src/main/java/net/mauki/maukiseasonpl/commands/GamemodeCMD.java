@@ -63,34 +63,34 @@ public class GamemodeCMD implements CommandExecutor {
         }
 
         switch (args[0].toLowerCase()) {
-            case "0", "survival" -> {
+            case "0":
+            case "survival":
                 player.setGameMode(GameMode.SURVIVAL);
                 sender.sendMessage(ChatColor.GREEN + "Erfolgreich! " + (selfExecution ? "Dein" : ChatColor.GOLD + args[1] + "'s" + ChatColor.RED) + " Spielmodus wurde zu " + ChatColor.GOLD + "Überleben" + ChatColor.GREEN + " geändert.");
                 if(!selfExecution) player.sendMessage(ChatColor.GREEN + "Dein Spielmodus wurde zu " + ChatColor.GOLD + "Überleben" + ChatColor.GREEN + " geändert.");
                 return true;
-            }
-            case "1", "creative" -> {
+            case "1":
+            case "creative":
                 player.setGameMode(GameMode.CREATIVE);
                 sender.sendMessage(ChatColor.GREEN + "Erfolgreich! " + (selfExecution ? "Dein" : ChatColor.GOLD + args[1] + "'s" + ChatColor.RED) + " Spielmodus wurde zu " + ChatColor.GOLD + "Kreativ" + ChatColor.GREEN + " geändert.");
                 if(!selfExecution) player.sendMessage(ChatColor.GREEN + "Dein Spielmodus Spielmodus wurde zu " + ChatColor.GOLD + "Kreativ" + ChatColor.GREEN + " geändert.");
                 return true;
-            }
-            case "2", "adventure" -> {
+
+            case "2":
+            case "adventure":
                 player.setGameMode(GameMode.ADVENTURE);
                 sender.sendMessage(ChatColor.GREEN + "Erfolgreich! " + (selfExecution ? "Dein" : ChatColor.GOLD + args[1] + "'s" + ChatColor.RED) + " Spielmodus wurde zu " + ChatColor.GOLD + "Abenteuer" + ChatColor.GREEN + " geändert.");
                 if(!selfExecution) player.sendMessage(ChatColor.GREEN + "Dein Spielmodus " + ChatColor.GOLD + "Abenteuer" + ChatColor.GREEN + " geändert.");
                 return true;
-            }
-            case "3", "spectator" -> {
+            case "3":
+            case "spectator":
                 player.setGameMode(GameMode.SPECTATOR);
                 sender.sendMessage(ChatColor.GREEN + "Erfolgreich! " + (selfExecution ? "Dein" : ChatColor.GOLD + args[1] + "'s" + ChatColor.RED) + " Spielmodus wurde zu " + ChatColor.GOLD + "Zuschauer" + ChatColor.GREEN + " geändert.");
                 if(!selfExecution) player.sendMessage(ChatColor.GREEN + "Dein Spielmodus wurde zu " + ChatColor.GOLD + "Zuschauer" + ChatColor.GREEN + " geändert.");
                 return true;
-            }
-            default -> {
+            default:
                 sender.sendMessage(ChatColor.RED + "Fehlgeschlagen! " + ChatColor.GOLD + args[0] + ChatColor.RED + " ist kein valider Spielmodus.");
                 return true;
-            }
         }
     }
 

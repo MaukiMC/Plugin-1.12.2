@@ -24,7 +24,8 @@ public class SignCMD implements CommandExecutor {
      */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(!(sender instanceof Player player)) return false;
+        if(!(sender instanceof Player)) return false;
+        Player player = (Player) sender;
         ItemStack currentHand = player.getItemInHand();
         if(currentHand.getType() == Material.AIR) {
             player.sendMessage(ChatColor.RED + "Fehlgeschlagen! Du hast kein Item in deiner Hand.");

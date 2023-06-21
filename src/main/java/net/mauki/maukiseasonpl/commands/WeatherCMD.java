@@ -26,10 +26,11 @@ public class WeatherCMD implements CommandExecutor {
      */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(!(sender instanceof Player player)) {
+        if(!(sender instanceof Player)) {
             sender.sendMessage(MessageConstants.NEED_TO_BE_A_PLAYER());
             return false;
         }
+        Player player = (Player) sender;
         if(player.getPlayerWeather() == WeatherType.CLEAR) {
             player.sendMessage(ChatColor.RED + "Es scheint bereits die Sonne...");
             return false;

@@ -22,10 +22,11 @@ public class EndseeCMD implements CommandExecutor {
      */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(!(sender instanceof Player player)) {
+        if(!(sender instanceof Player)) {
             sender.sendMessage(MessageConstants.NEED_TO_BE_A_PLAYER());
             return false;
         }
+        Player player = (Player) sender;
         if(args.length != 0) {
             if(!player.isOp()) {
                 player.sendMessage(MessageConstants.NOT_AN_OPERATOR());

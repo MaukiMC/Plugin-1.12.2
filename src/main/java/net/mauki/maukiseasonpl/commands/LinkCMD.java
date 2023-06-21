@@ -28,10 +28,11 @@ public class LinkCMD implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         try {
-            if(!(sender instanceof Player player)) {
+            if(!(sender instanceof Player)) {
                 sender.sendMessage(MessageConstants.NEED_TO_BE_A_PLAYER());
                 return false;
             }
+            Player player = (Player) sender;
             ResultSet rs = LiteSQL.onQuery("SELECT * FROM connections WHERE uuid = '" + player.getUniqueId() + "'");
             assert rs != null;
             if(rs.next()) {
