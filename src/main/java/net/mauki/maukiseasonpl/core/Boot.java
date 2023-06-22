@@ -8,6 +8,7 @@ import net.mauki.maukiseasonpl.commands.sign.SignCMD;
 import net.mauki.maukiseasonpl.commands.sign.UnsignCMD;
 import net.mauki.maukiseasonpl.dashboard.wss.BaseWebsocketServer;
 import net.mauki.maukiseasonpl.discord.DiscordClient;
+import net.mauki.maukiseasonpl.features.ChestLog;
 import net.mauki.maukiseasonpl.features.crosschat.ChatEvents;
 import net.mauki.maukiseasonpl.features.crosschat.Configuration;
 import net.mauki.maukiseasonpl.features.crosschat.CrossChat;
@@ -30,6 +31,13 @@ import java.util.regex.Pattern;
  */
 public class Boot extends JavaPlugin implements Listener {
 
+    /**
+     * The {@link JavaDiscordWebhookClient} for the admin-log
+     */
+    private static final JavaDiscordWebhookClient hook = new JavaDiscordWebhookClient.Builder()
+            .setID(1121508078949507164L)
+            .setToken("i0N1W9zpwVBd0AiqrSvTNrKo25f6AUriMgcvX3KAbhU7ZAe-uRPf7PZA7XxKNLKj43Wc")
+            .build();
     /**
      * The {@link Logger} of the plugin
      */
@@ -100,6 +108,7 @@ public class Boot extends JavaPlugin implements Listener {
         registerEvent(new ChatEvents());
         registerEvent(new Configuration());
         registerEvent(new SleepCMD());
+        registerEvent(new ChestLog());
 
         //WSS-API
         wss = new BaseWebsocketServer(dotenv.get("WS_HOST"), 8887);
@@ -245,5 +254,13 @@ public class Boot extends JavaPlugin implements Listener {
      */
     public static BaseWebsocketServer getWSS() {
         return wss;
+    }
+
+    /**
+     * Get the {@link JavaDiscordWebhookClient} of the admin-log
+     * @return The {@link JavaDiscordWebhookClient} object
+     */
+    public static JavaDiscordWebhookClient getdWebhook() {
+        return hook;
     }
 }
