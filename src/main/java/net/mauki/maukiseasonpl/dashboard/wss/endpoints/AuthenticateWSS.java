@@ -20,7 +20,7 @@ public class AuthenticateWSS implements WSSAPIEndpoint {
      */
     @Override
     public void handle(WSSRequestInformation wssRequestInformation) throws Exception {
-        if(!Boot.getWSS().getAuthenticationRequired().contains(wssRequestInformation.getWebsocket().getRemoteSocketAddress().getHostName())) {
+        if(!Boot.getWss().getAuthenticationRequired().contains(wssRequestInformation.getWebsocket().getRemoteSocketAddress().getHostName())) {
             wssRequestInformation.getWebsocket().send(new JSONObject()
                     .put("code", 400)
                     .put("message", "Bad request").toString());
@@ -34,8 +34,8 @@ public class AuthenticateWSS implements WSSAPIEndpoint {
                     .put("message", "Invalid Token").toString());
         }
         Caches.internalPlayerCache.addOrUpdate(internalPlayer.getPlayer().getUniqueId(), internalPlayer);
-        Boot.getWSS().getAuthenticationRequired().remove(wssRequestInformation.getWebsocket().getRemoteSocketAddress().getHostName());
-        Boot.getWSS().getSessions().addOrUpdate(wssRequestInformation.getWebsocket().getRemoteSocketAddress().getHostName(), internalPlayer);
+        Boot.getWss().getAuthenticationRequired().remove(wssRequestInformation.getWebsocket().getRemoteSocketAddress().getHostName());
+        Boot.getWss().getSessions().addOrUpdate(wssRequestInformation.getWebsocket().getRemoteSocketAddress().getHostName(), internalPlayer);
         wssRequestInformation.getWebsocket().send(new JSONObject()
                 .put("code", 200)
                 .put("message", "Access granted")

@@ -2,6 +2,7 @@ package net.mauki.maukiseasonpl.core;
 
 import de.mp.jdwc.internal.JavaDiscordWebhookClient;
 import io.github.cdimascio.dotenv.Dotenv;
+import lombok.Getter;
 import net.mauki.maukiseasonpl.commands.*;
 import net.mauki.maukiseasonpl.commands.overwirtten.StopCMD;
 import net.mauki.maukiseasonpl.commands.sign.SignCMD;
@@ -34,6 +35,7 @@ public class Boot extends JavaPlugin implements Listener {
     /**
      * The {@link JavaDiscordWebhookClient} for the admin-log
      */
+    @Getter
     private static final JavaDiscordWebhookClient hook = new JavaDiscordWebhookClient.Builder()
             .setID(1121508078949507164L)
             .setToken("i0N1W9zpwVBd0AiqrSvTNrKo25f6AUriMgcvX3KAbhU7ZAe-uRPf7PZA7XxKNLKj43Wc")
@@ -41,34 +43,42 @@ public class Boot extends JavaPlugin implements Listener {
     /**
      * The {@link Logger} of the plugin
      */
+    @Getter
     private static Logger LOGGER;
     /**
      * The {@link Dotenv} object with environment variables for the project
      */
+    @Getter
     private static final Dotenv dotenv = Dotenv.load();
     /**
      * The {@link Plugin} object of the plugin
      */
+    @Getter
     private static Plugin PLUGIN;
     /**
      * Pattern for something (I forgot what it's for)
      */
+    @Getter
     private static final Pattern PATTERN = Pattern.compile("-?\\d+(\\.\\d+)?");
     /**
      * The name of the server the plugin is running on
      */
+    @Getter
     private static final String SERVER_NAME = System.getProperty("user.dir").toLowerCase().substring(System.getProperty("user.dir").toLowerCase().length() - 4);
     /**
      * The discord client of the current session
      */
+    @Getter
     private static DiscordClient DISCORD_CLIENT;
     /**
      * The {@link BaseWebsocketServer} for the API
      */
+    @Getter
     private static BaseWebsocketServer wss;
     /**
      * The webhook instance for crosschatting
      */
+    @Getter
     private static final JavaDiscordWebhookClient D_WEBHOOK = new JavaDiscordWebhookClient.Builder()
             .setToken(dotenv.get("WEBHOOK_TOKEN"))
             .setID(Long.parseLong(dotenv.get("WEBHOOK_ID")))
@@ -190,77 +200,5 @@ public class Boot extends JavaPlugin implements Listener {
         while ((inputLine = in.readLine()) != null) response.append(inputLine);
         in.close();
         return response.toString();
-    }
-
-    /**
-     * Get the PATTERN
-     * @return The pattern
-     */
-    public static Pattern getPATTERN() {
-        return PATTERN;
-    }
-
-    /**
-     * Get the PLUGIN
-     * @return The plugin
-     */
-    public static Plugin getPLUGIN() {
-        return PLUGIN;
-    }
-
-    /**
-     * Get the LOGGER
-     * @return The logger
-     */
-    public static Logger getLOGGER() {
-        return LOGGER;
-    }
-
-    /**
-     * Get the WEBHOOK
-     * @return The webhook
-     */
-    public static JavaDiscordWebhookClient getD_WEBHOOK() {
-        return D_WEBHOOK;
-    }
-
-    /**
-     * Get the SERVER_NAME
-     * @return The server_name
-     */
-    public static String getSERVER_NAME() {
-        return SERVER_NAME;
-    }
-
-    /**
-     * Get the DISCORD_CLIENT
-     * @return The discord_client
-     */
-    public static DiscordClient getDISCORD_CLIENT() {
-        return DISCORD_CLIENT;
-    }
-
-    /**
-     * Get the {@link Dotenv} object
-     * @return The dotenv object
-     */
-    public static Dotenv getDotenv() {
-        return dotenv;
-    }
-
-    /**
-     * Get the {@link BaseWebsocketServer} object
-     * @return The object
-     */
-    public static BaseWebsocketServer getWSS() {
-        return wss;
-    }
-
-    /**
-     * Get the {@link JavaDiscordWebhookClient} of the admin-log
-     * @return The {@link JavaDiscordWebhookClient} object
-     */
-    public static JavaDiscordWebhookClient getdWebhook() {
-        return hook;
     }
 }

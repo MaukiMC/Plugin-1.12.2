@@ -1,5 +1,7 @@
 package net.mauki.maukiseasonpl.discord;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -32,18 +34,23 @@ public class DiscordClient extends ListenerAdapter {
      * @deprecated
      */
     @Deprecated
+    @Getter
+    @Setter
     private boolean reload = false;
     /**
      * The token of the bot
      */
+    @Getter
     private final String token;
     /**
      * The {@link JDABuilder} of the bot
      */
+    @Getter
     private JDABuilder jdaBuilder;
     /**
      * The {@link JDA} object of the website
      */
+    @Getter
     private JDA JDA;
 
 
@@ -123,49 +130,5 @@ public class DiscordClient extends ListenerAdapter {
     @Override
     public void onShutdown(@NotNull ShutdownEvent event) {
         Boot.getLOGGER().info("Shutting down the DiscordClient.");
-    }
-
-    /**
-     * Get the {@link JDA} object
-     * @return The {@link JDA} object
-     */
-    public net.dv8tion.jda.api.JDA getJDA() {
-        return JDA;
-    }
-
-    /**
-     * Get the {@link JDABuilder} object
-     * @return The {@link JDABuilder} object
-     */
-    public JDABuilder getJdaBuilder() {
-        return jdaBuilder;
-    }
-
-    /**
-     * Get the token of the bot
-     * @return The token of the bot
-     */
-    public String getToken() {
-        return token;
-    }
-
-    /**
-     * Check if the bot should be reloaded
-     * @return If the bot should be reloaded
-     * @deprecated
-     */
-    @Deprecated
-    public boolean isReload() {
-        return reload;
-    }
-
-    /**
-     * Set if the bot should be reloaded
-     * @param reload If the bot should be reloaded
-     * @deprecated
-     */
-    @Deprecated
-    public void setReload(boolean reload) {
-        this.reload = reload;
     }
 }

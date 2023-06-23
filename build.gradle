@@ -35,6 +35,7 @@ dependencies {
     implementation 'com.github.Mokulu:discord-oauth2-api:1.0.2'
     implementation 'io.github.cdimascio:dotenv-java:2.2.0'
     implementation 'org.java-websocket:Java-WebSocket:1.5.3'
+    implementation 'org.projectlombok:lombok:1.18.28'
 
     extraLibs fileTree(include: ['*.jar'], dir: './src/main/resources')
     extraLibs 'de.taimos:totp:1.0'
@@ -45,6 +46,9 @@ dependencies {
     extraLibs 'com.github.Mokulu:discord-oauth2-api:1.0.2'
     extraLibs 'io.github.cdimascio:dotenv-java:2.2.0'
     extraLibs 'org.java-websocket:Java-WebSocket:1.5.3'
+    extraLibs 'org.projectlombok:lombok:1.18.28'
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.28'
 }
 
 def targetJavaVersion = 10
