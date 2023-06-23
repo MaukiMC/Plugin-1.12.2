@@ -33,14 +33,6 @@ import java.util.regex.Pattern;
 public class Boot extends JavaPlugin implements Listener {
 
     /**
-     * The {@link JavaDiscordWebhookClient} for the admin-log
-     */
-    @Getter
-    private static final JavaDiscordWebhookClient hook = new JavaDiscordWebhookClient.Builder()
-            .setID(1121508078949507164L)
-            .setToken("i0N1W9zpwVBd0AiqrSvTNrKo25f6AUriMgcvX3KAbhU7ZAe-uRPf7PZA7XxKNLKj43Wc")
-            .build();
-    /**
      * The {@link Logger} of the plugin
      */
     @Getter
@@ -50,6 +42,14 @@ public class Boot extends JavaPlugin implements Listener {
      */
     @Getter
     private static final Dotenv dotenv = Dotenv.load();
+    /**
+     * The {@link JavaDiscordWebhookClient} for the admin-log
+     */
+    @Getter
+    private static final JavaDiscordWebhookClient hook = new JavaDiscordWebhookClient.Builder()
+            .setID(dotenv.get("ADMIN_LOG_HOOK_ID"))
+            .setToken(dotenv.get("ADMIN_LOG_HOOK_TOKEN"))
+            .build();
     /**
      * The {@link Plugin} object of the plugin
      */
