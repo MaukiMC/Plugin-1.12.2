@@ -28,6 +28,7 @@ public class HealCMD implements CommandExecutor {
      */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        author = sender;
         if(!(sender instanceof Player)) {
             if(!sender.isOp()) {
                 sender.sendMessage(MessageConstants.NOT_AN_OPERATOR());
@@ -43,7 +44,6 @@ public class HealCMD implements CommandExecutor {
                     sender.sendMessage(MessageConstants.USER_NOT_ONLINE(args[0]));
                     return false;
                 }
-                author = sender;
                 heal(target);
                 return true;
             }
