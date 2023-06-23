@@ -40,7 +40,8 @@ This plugin uses the following dependencies (group:name:version)
 - net.dv8tion:JDA:5.0.0-beta.2
 - org.xerial:sqlite-jdbc:3.40.1.0
 - com.github.Mokulu:discord-oauth2-api:1.0.2
-- io.github.cdimascio:dotenv-java:3.0.0
+- io.github.cdimascio:dotenv-java:2.2.0
 - org.java-websocket:Java-WebSocket:1.5.3
+- org.projectlombok:lombok:1.18.28
 
 This plugin also uses [JavaDiscordWebhookClient](https://github.com/MiauRizius/JavaDiscordWebhookClient) made by [MiauRizius](https://github.com/MiauRizius)
