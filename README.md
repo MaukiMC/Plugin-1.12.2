@@ -2,10 +2,10 @@
 [license-shield]: https://img.shields.io/badge/License-GPL3.0-green.svg
 
 [version]: https://img.shields.io/static/v1?label=Download&message=SNAPSHOT-v1.18.0_ALPHA&color=blue
-[download]: https://github.com/MaukiMC/MaukiSeasonPL/releases/tag/SNAPSHOT-v1.18.0_ALPHA
+[download]: https://github.com/MaukiNet/MaukiSeasonPL/releases/tag/SNAPSHOT-v1.18.0_ALPHA
 
 [wiki]: https://img.shields.io/static/v1?label=Javadoc&message=Overview&color=orange
-[wikilink]: https://maukimc.github.io/MaukiSeasonPL/
+[wikilink]: https://maukinet.github.io/MaukiSeasonPL/
 
 [ ![version][] ][download]
 [ ![license-shield][] ][license]
