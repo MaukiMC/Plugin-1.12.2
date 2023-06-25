@@ -15,8 +15,11 @@ import net.mauki.maukiseasonpl.features.crosschat.Configuration;
 import net.mauki.maukiseasonpl.features.crosschat.CrossChat;
 import net.mauki.maukiseasonpl.features.linking.LinkingListener;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -112,6 +115,12 @@ public class Boot extends JavaPlugin implements Listener {
         registerEvent(new Configuration());
         registerEvent(new SleepCMD());
         registerEvent(new ChestLog());
+        registerEvent(new Listener() {
+            @EventHandler
+            public void onPlayerKicked(PlayerKickEvent event) {
+                if(event.getCause() == PlayerKickEvent.Cause.FLYING_PLAYER) event.setLeaveMessage(ChatColor.RED + "Ein Fehler ist aufgetreten. Bitte starte deinen Client neu!");
+            }
+        });
         //registerEvent(new LinkingListener());
 
         //WSS-API
