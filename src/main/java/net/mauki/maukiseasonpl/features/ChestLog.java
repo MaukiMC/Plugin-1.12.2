@@ -60,7 +60,11 @@ public class ChestLog implements Listener {
                         "**__Amount:__** " + (currItNull ? "_Could not be loaded_" : event.getCurrentItem().getAmount()) + "\\n" +
                         "**__Location:__** " + (invLocNull ? "_Could not be loaded_" : "(`" + event.getClickedInventory().getLocation().getBlockX() + "`, `" + event.getClickedInventory().getLocation().getBlockY() + "`, `" + event.getClickedInventory().getLocation().getBlockZ() + "`)") + "\\n" +
                         "**__Player:__** " + event.getWhoClicked().getName()));
-        hook.execute();
+        try {
+            hook.execute();
+        } catch(Exception ex) {
+            Boot.getLOGGER().warning("Admin-Log: " + ex.getMessage());
+        }
     }
 
 }
