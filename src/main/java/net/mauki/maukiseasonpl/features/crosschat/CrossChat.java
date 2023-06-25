@@ -26,7 +26,11 @@ public class CrossChat extends ListenerAdapter implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onAsyncChat(AsyncPlayerChatEvent event) throws IOException {
         event.setCancelled(true);
-        Boot.getPLUGIN().getServer().broadcastMessage(ChatColor.GRAY + event.getPlayer().getName() + ": " + ChatColor.RESET + event.getMessage());
+        if(event.getPlayer().isOp()) {
+            Boot.getPLUGIN().getServer().broadcastMessage(ChatColor.RED + event.getPlayer().getName() + ": " + ChatColor.RESET + event.getMessage());
+            return;
+        }
+        Boot.getPLUGIN().getServer().broadcastMessage(ChatColor.DARK_AQUA + event.getPlayer().getName() + ": " + ChatColor.RESET + event.getMessage());
 
         Boot.getD_WEBHOOK().setAvatarUrl("https://crafatar.com/avatars/" + event.getPlayer().getUniqueId() + "?overlay");
         Boot.getD_WEBHOOK().setUsername(event.getPlayer().getName());

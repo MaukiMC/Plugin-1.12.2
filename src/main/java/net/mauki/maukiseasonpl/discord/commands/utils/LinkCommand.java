@@ -4,9 +4,11 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
+import net.mauki.maukiseasonpl.core.Boot;
 import net.mauki.maukiseasonpl.core.LiteSQL;
 import net.mauki.maukiseasonpl.discord.commands.handler.SlashCommand;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 
 import java.sql.ResultSet;
 import java.util.Objects;
@@ -42,6 +44,8 @@ public class LinkCommand implements SlashCommand {
             if(rs.getString("code").equalsIgnoreCase(code)) {
                 LiteSQL.onUpdate("UPDATE connections SET discord_id = '" + Objects.requireNonNull(event.getMember()).getId() + "' WHERE code = '" + code + "'");
                 event.reply(":white_check_mark: | **" + Bukkit.getPlayer(UUID.fromString(rs.getString("uuid"))).getName() + "** wurde erfolgreich als dein Minecraft-Account hinterlegt.").setEphemeral(true).queue();
+                if(Bukkit.getPlayer(UUID.fromString(rs.getString("uuid"))) == null) return;
+                Bukkit.getPlayer(UUID.fromString(rs.getString("uuid"))).teleport(new Location(Boot.getPLUGIN().getServer().getWorld("world"), 204, 63, 221));
                 return;
             }
             event.reply(":x: | Invalider Code!").setEphemeral(true).queue();

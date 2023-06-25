@@ -24,7 +24,10 @@ public class ChatEvents extends ListenerAdapter implements Listener {
      */
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        event.setJoinMessage(ChatColor.GRAY + event.getPlayer().getName() + " ist dem Spiel beigetreten.");
+        if(event.getPlayer().isOp())
+            event.setJoinMessage(ChatColor.RED + event.getPlayer().getName() + ChatColor.GRAY + " ist dem Spiel beigetreten.");
+        else
+            event.setJoinMessage(ChatColor.GRAY + event.getPlayer().getName() + " ist dem Spiel beigetreten.");
         if(!Boot.getSERVER_NAME().equalsIgnoreCase("pa01")) return;
         Objects.requireNonNull(Boot.getDISCORD_CLIENT().getJDA().getTextChannelById(1109934419508203641L)).sendMessageEmbeds(
                 new EmbedBuilder()
@@ -40,7 +43,10 @@ public class ChatEvents extends ListenerAdapter implements Listener {
      */
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) {
-        event.setQuitMessage(ChatColor.GRAY + event.getPlayer().getName() + " hat das Spiel verlassen.");
+        if(event.getPlayer().isOp())
+            event.setQuitMessage(ChatColor.RED + event.getPlayer().getName() + ChatColor.GRAY + " hat das Spiel verlassen.");
+        else
+            event.setQuitMessage(ChatColor.GRAY + event.getPlayer().getName() + " hat das Spiel verlassen.");
         if(!Boot.getSERVER_NAME().equalsIgnoreCase("pa01")) return;
         Objects.requireNonNull(Boot.getDISCORD_CLIENT().getJDA().getTextChannelById(1109934419508203641L)).sendMessageEmbeds(
                 new EmbedBuilder()

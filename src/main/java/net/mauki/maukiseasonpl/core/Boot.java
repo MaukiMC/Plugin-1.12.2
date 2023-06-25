@@ -13,6 +13,7 @@ import net.mauki.maukiseasonpl.features.ChestLog;
 import net.mauki.maukiseasonpl.features.crosschat.ChatEvents;
 import net.mauki.maukiseasonpl.features.crosschat.Configuration;
 import net.mauki.maukiseasonpl.features.crosschat.CrossChat;
+import net.mauki.maukiseasonpl.features.linking.LinkingListener;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
@@ -42,14 +43,6 @@ public class Boot extends JavaPlugin implements Listener {
      */
     @Getter
     private static final Dotenv dotenv = Dotenv.load();
-    /**
-     * The {@link JavaDiscordWebhookClient} for the admin-log
-     */
-    @Getter
-    private static final JavaDiscordWebhookClient hook = new JavaDiscordWebhookClient.Builder()
-            .setID(dotenv.get("ADMIN_LOG_HOOK_ID"))
-            .setToken(dotenv.get("ADMIN_LOG_HOOK_TOKEN"))
-            .build();
     /**
      * The {@link Plugin} object of the plugin
      */
@@ -119,6 +112,7 @@ public class Boot extends JavaPlugin implements Listener {
         registerEvent(new Configuration());
         registerEvent(new SleepCMD());
         registerEvent(new ChestLog());
+        //registerEvent(new LinkingListener());
 
         //WSS-API
         wss = new BaseWebsocketServer(dotenv.get("WS_HOST"), 8887);

@@ -109,22 +109,23 @@ public class DiscordClient extends ListenerAdapter {
         event.getChannel().sendMessageEmbeds(new EmbedBuilder()
                 .setTitle("Minecraft-Übersicht")
                 .setDescription("Um auf dem Minecraft Server über `mc.mauki.net` spielen zu können, benötigst du einen [`1.16.5`-Forge Client](https://files.minecraftforge.net/net/minecraftforge/forge/index_1.16.5.html)\n\n" +
-                        "Im Web-Dashbaord könnt ihr euch unter https://web.mc.mauki.net via Discord einloggen, nachdem ihr euren Account mit `/link` verlinkt habt.\n" +
-                        "In besagtem Dashboard gibt es einige coole Funktionen und Statistiken für euch ;)\n\n" +
-                        "Die Regeln des Minecraft-Servers findest du unter https://web.mc.mauki.net/regeln\n\n" +
+                        //"Im Web-Dashbaord könnt ihr euch unter https://web.mc.mauki.net via Discord einloggen, nachdem ihr euren Account mit `/link` verlinkt habt.\n" +
+                        //"In besagtem Dashboard gibt es einige coole Funktionen und Statistiken für euch ;)\n\n" +
+                        //"Die Regeln des Minecraft-Servers findest du unter https://web.mc.mauki.net/regeln\n\n" +
                         "Wer sich für den Code interessiert, sollte auf https://github.com/MaukiNet vorbeischauen!\n\n" +
-                        "Die Mods zum download gibt es unter https://web.mc.mauki.net/mods\n")
+                        "Die Mods zum download gibt es unter https://mc.mauki.net/mods\n")
                 .addField("Zusammenfassung", "IP (Java): `mc.mauki.net`\n" +
                         "Version: `1.16.5-Forge`\n" +
-                        "Dashboard: https://web.mc.mauki.net\n" +
-                        "Mods: https://web.mc.mauki.net/mods", false)
+                        //"Dashboard: https://web.mc.mauki.net\n" +
+                        "Mods: https://mc.mauki.net/mods", false)
                 .setColor(Color.decode("#5b8731"))
                 .setFooter("https://mauki.net")
                 .setThumbnail(event.getJDA().getSelfUser().getEffectiveAvatarUrl())
-                .build()).addActionRow(Button.link("https://web.mc.maukinet", "Dashboard"),
-                Button.link("https://web.mc.mauki.net/regeln", "Regeln"),
+                .build()).addActionRow(
+                        //Button.link("https://web.mc.maukinet", "Dashboard"),
+                //Button.link("https://web.mc.mauki.net/regeln", "Regeln"),
                 Button.link("https://github.com/MaukiNet", "GitHub"),
-                Button.link("https://web.mc.mauki.net/mods", "Mods")).queue();
+                Button.link("https://mc.mauki.net/mods", "Mods")).queue();
     }
 
     @Override
