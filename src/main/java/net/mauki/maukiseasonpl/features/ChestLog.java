@@ -33,34 +33,34 @@ public class ChestLog implements Listener {
      */
     @EventHandler
     public void onChestOpen(InventoryClickEvent event) throws IOException {
-        if(event.getClickedInventory() == null || event.getClickedInventory().getType() == InventoryType.PLAYER) return;
-        if(getCache().asMap().getOrDefault(event.getWhoClicked().getUniqueId(), 0) >= 5) return;
-
-        getCache().put(event.getWhoClicked().getUniqueId(), getCache().asMap().getOrDefault(event.getWhoClicked().getUniqueId(), 0)+1);
-
-        JavaDiscordWebhookClient hook = new JavaDiscordWebhookClient.Builder()
-                .setID(Long.parseLong(Boot.getDotenv().get("ADMIN_LOG_HOOK_ID")))
-                .setToken(Boot.getDotenv().get("ADMIN_LOG_HOOK_TOKEN"))
-                .build();
-
-        hook.setAvatarUrl(Boot.getDISCORD_CLIENT().getJDA().getSelfUser().getEffectiveAvatarUrl());
-        hook.setUsername(event.getWhoClicked().getName());
-
-        boolean currItNull = (event.getCurrentItem() == null);
-        boolean hasName = event.getCurrentItem().getItemMeta().hasLocalizedName();
-        boolean clickInvNull = (event.getClickedInventory() == null);
-        boolean invLocNull = (clickInvNull || event.getClickedInventory().getLocation() == null);
-
-        hook.addEmbed(new EmbedObject()
-                .setTitle("Inventory Event")
-                .setAuthor(event.getWhoClicked().getName(), null, "https://crafatar.com/avatars/" + event.getWhoClicked().getUniqueId() + "?overlay")
-                .setColor(Color.YELLOW)
-                .setDescription("**__Item Name:__** " + (currItNull || !hasName ? "_Could not be loaded/No name given_" : event.getCurrentItem().getItemMeta().getLocalizedName()) + "\\n" +
-                        "**__Material:__** " + (currItNull ? "_Could not be loaded_" : event.getCurrentItem().getType()) + "\\n" +
-                        "**__Amount:__** " + (currItNull ? "_Could not be loaded_" : event.getCurrentItem().getAmount()) + "\\n" +
-                        "**__Location:__** " + (invLocNull ? "_Could not be loaded_" : "(`" + event.getClickedInventory().getLocation().getBlockX() + "`, `" + event.getClickedInventory().getLocation().getBlockY() + "`, `" + event.getClickedInventory().getLocation().getBlockZ() + "`)") + "\\n" +
-                        "**__Player:__** " + event.getWhoClicked().getName()));
         try {
+            if(event.getClickedInventory() == null || event.getClickedInventory().getType() == InventoryType.PLAYER) return;
+            if(getCache().asMap().getOrDefault(event.getWhoClicked().getUniqueId(), 0) >= 5) return;
+
+            getCache().put(event.getWhoClicked().getUniqueId(), getCache().asMap().getOrDefault(event.getWhoClicked().getUniqueId(), 0)+1);
+
+            JavaDiscordWebhookClient hook = new JavaDiscordWebhookClient.Builder()
+                    .setID(Long.parseLong(Boot.getDotenv().get("ADMIN_LOG_HOOK_ID")))
+                    .setToken(Boot.getDotenv().get("ADMIN_LOG_HOOK_TOKEN"))
+                    .build();
+
+            hook.setAvatarUrl(Boot.getDISCORD_CLIENT().getJDA().getSelfUser().getEffectiveAvatarUrl());
+            hook.setUsername(event.getWhoClicked().getName());
+
+            boolean currItNull = (event.getCurrentItem() == null);
+            boolean hasName = event.getCurrentItem().getItemMeta().hasLocalizedName();
+            boolean clickInvNull = (event.getClickedInventory() == null);
+            boolean invLocNull = (clickInvNull || event.getClickedInventory().getLocation() == null);
+
+            hook.addEmbed(new EmbedObject()
+                    .setTitle("Inventory Event")
+                    .setAuthor(event.getWhoClicked().getName(), null, "https://crafatar.com/avatars/" + event.getWhoClicked().getUniqueId() + "?overlay")
+                    .setColor(Color.YELLOW)
+                    .setDescription("**__Item Name:__** " + (currItNull || !hasName ? "_Could not be loaded/No name given_" : event.getCurrentItem().getItemMeta().getLocalizedName()) + "\\n" +
+                            "**__Material:__** " + (currItNull ? "_Could not be loaded_" : event.getCurrentItem().getType()) + "\\n" +
+                            "**__Amount:__** " + (currItNull ? "_Could not be loaded_" : event.getCurrentItem().getAmount()) + "\\n" +
+                            "**__Location:__** " + (invLocNull ? "_Could not be loaded_" : "(`" + event.getClickedInventory().getLocation().getBlockX() + "`, `" + event.getClickedInventory().getLocation().getBlockY() + "`, `" + event.getClickedInventory().getLocation().getBlockZ() + "`)") + "\\n" +
+                            "**__Player:__** " + event.getWhoClicked().getName()));
             hook.execute();
         } catch(Exception ex) {
             Boot.getLOGGER().warning("Admin-Log: " + ex.getMessage());
