@@ -14,7 +14,9 @@ import java.sql.SQLException;
 
 /**
  * Command to generate a code for linking your discord account
+ * @deprecated
  */
+@Deprecated
 public class LinkCMD implements CommandExecutor {
 
     /**

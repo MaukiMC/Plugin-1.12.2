@@ -44,8 +44,6 @@ public class LinkCommand implements SlashCommand {
             if(rs.getString("code").equalsIgnoreCase(code)) {
                 LiteSQL.onUpdate("UPDATE connections SET discord_id = '" + Objects.requireNonNull(event.getMember()).getId() + "' WHERE code = '" + code + "'");
                 event.reply(":white_check_mark: | **" + Bukkit.getPlayer(UUID.fromString(rs.getString("uuid"))).getName() + "** wurde erfolgreich als dein Minecraft-Account hinterlegt.").setEphemeral(true).queue();
-                if(Bukkit.getPlayer(UUID.fromString(rs.getString("uuid"))) == null) return;
-                Bukkit.getPlayer(UUID.fromString(rs.getString("uuid"))).teleport(new Location(Boot.getPLUGIN().getServer().getWorld("world"), 204, 63, 221));
                 return;
             }
             event.reply(":x: | Invalider Code!").setEphemeral(true).queue();

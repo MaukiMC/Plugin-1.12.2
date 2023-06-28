@@ -13,8 +13,8 @@ commands:
     aliases:
       - gm
     description: Ändere deinen oder den Spielmodus eines Spielers.
-  link:
-    description: Verlinke deinen Discord-Account in Minecraft.
+#  link:
+#    description: Verlinke deinen Discord-Account in Minecraft.
   invsee:
     description: Öffne das Inventar eines Mitspielers
   endsee:

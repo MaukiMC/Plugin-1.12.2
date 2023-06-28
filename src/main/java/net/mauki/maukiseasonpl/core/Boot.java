@@ -96,7 +96,7 @@ public class Boot extends JavaPlugin implements Listener {
 
         //Commands
         registerCommand("gamemode", new GamemodeCMD());
-        registerCommand("link", new LinkCMD());
+        //registerCommand("link", new LinkCMD());
         registerCommand("invsee", new InvseeCMD());
         registerCommand("endsee", new EndseeCMD());
         registerCommand("sudo", new SudoCMD());
@@ -115,13 +115,7 @@ public class Boot extends JavaPlugin implements Listener {
         registerEvent(new Configuration());
         registerEvent(new SleepCMD());
         registerEvent(new ChestLog());
-        registerEvent(new Listener() {
-            @EventHandler
-            public void onPlayerKicked(PlayerKickEvent event) {
-                if(event.getCause() == PlayerKickEvent.Cause.FLYING_PLAYER) event.setLeaveMessage(ChatColor.RED + "Ein Fehler ist aufgetreten. Bitte starte deinen Client neu!");
-            }
-        });
-        //registerEvent(new LinkingListener());
+        registerEvent(new LinkingListener());
 
         //WSS-API
         wss = new BaseWebsocketServer(dotenv.get("WS_HOST"), 8887);
