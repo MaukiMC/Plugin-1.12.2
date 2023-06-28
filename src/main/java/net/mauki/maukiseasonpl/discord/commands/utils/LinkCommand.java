@@ -9,6 +9,7 @@ import net.mauki.maukiseasonpl.core.LiteSQL;
 import net.mauki.maukiseasonpl.discord.commands.handler.SlashCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
 import java.sql.ResultSet;
 import java.util.Objects;
@@ -42,8 +43,9 @@ public class LinkCommand implements SlashCommand {
 
         while(rs.next()) {
             if(rs.getString("code").equalsIgnoreCase(code)) {
+                Player player = Bukkit.getPlayer(UUID.fromString(rs.getString("uuid")));
                 LiteSQL.onUpdate("UPDATE connections SET discord_id = '" + Objects.requireNonNull(event.getMember()).getId() + "' WHERE code = '" + code + "'");
-                event.reply(":white_check_mark: | **" + Bukkit.getPlayer(UUID.fromString(rs.getString("uuid"))).getName() + "** wurde erfolgreich als dein Minecraft-Account hinterlegt.").setEphemeral(true).queue();
+                event.reply(":white_check_mark: | **" + (player == null ? "_Name konnte nicht geladen werden_" : player.getName()) + "** wurde erfolgreich als dein Minecraft-Account hinterlegt.").setEphemeral(true).queue();
                 return;
             }
             event.reply(":x: | Invalider Code!").setEphemeral(true).queue();
