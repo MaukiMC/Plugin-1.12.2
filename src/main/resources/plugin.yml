@@ -1,5 +1,5 @@
 name: MaukiSeasonPL
-version: SNAPSHOT-v1.18.0_ALPHA
+version: v1.20.0_BETA
 main: net.mauki.maukiseasonpl.core.Boot
 prefix: MaukiSeasonPL
 load: STARTUP

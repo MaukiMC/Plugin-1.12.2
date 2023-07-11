@@ -1,8 +1,8 @@
 [license]: https://github.com/MaukiMC/MaukiSeasonPL/blob/main/LICENSE
 [license-shield]: https://img.shields.io/badge/License-GPL3.0-green.svg
 
-[version]: https://img.shields.io/static/v1?label=Download&message=SNAPSHOT-v1.18.0_ALPHA&color=blue
-[download]: https://github.com/MaukiNet/MaukiSeasonPL/releases/tag/SNAPSHOT-v1.18.0_ALPHA
+[version]: https://img.shields.io/static/v1?label=Download&message=v1.20.0_BETA&color=blue
+[download]: https://github.com/MaukiNet/MaukiSeasonPL/releases/tag/v1.20.0_BETA
 
 [wiki]: https://img.shields.io/static/v1?label=Javadoc&message=Overview&color=orange
 [wikilink]: https://maukinet.github.io/MaukiSeasonPL/
@@ -32,7 +32,7 @@ player.
 ## Building the .jar
 You can build the plugin in the gradle demon with the following command:
 ````shell
-$ build :copypa01 :copypa02
+$ build jar
 ````
 You will find the .jar file at ``out/jar/MaukiSeasonPL.jar``.
 

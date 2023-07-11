@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'de.mp'
-version 'SNAPSHOT-v1.18.0_ALPHA'
+version 'v1.20.0_BETA'
 
 repositories {
     mavenCentral()
