@@ -1,10 +1,11 @@
 package net.mauki.maukiseasonpl.features.linking;
 
+import net.kyori.adventure.text.Component;
 import net.mauki.maukiseasonpl.core.LiteSQL;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +13,7 @@ import java.sql.SQLException;
 public class LinkingListener implements Listener {
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) throws SQLException {
+    public void onPlayerJoin(PlayerLoginEvent event) throws SQLException {
         String code;
         ResultSet rs = LiteSQL.onQuery("SELECT * FROM connections WHERE uuid = '" + event.getPlayer().getUniqueId() + "'");
         assert rs != null;
@@ -25,9 +26,13 @@ public class LinkingListener implements Listener {
             LiteSQL.onUpdate("INSERT INTO connections(uuid, code) VALUES ('" + event.getPlayer().getUniqueId() + "', '" + newCode + "')");
         }
         if(code == null) return;
-        event.getPlayer().kickPlayer(ChatColor.RED + "Bitte verifiziere dich auf Discord mit " + ChatColor.GOLD + "/link <code>\n" +
+        event.setResult(PlayerLoginEvent.Result.KICK_OTHER);
+        event.kickMessage(Component.text(ChatColor.RED + "Bitte verifiziere dich auf Discord mit " + ChatColor.GOLD + "/link <code>\n" +
                 ChatColor.RED + "Verwende dabei folgenden Code: " + ChatColor.GREEN + code + "\n" +
-                ChatColor.RED + "Verbinde dich danach erneut auf " + ChatColor.GOLD + "mc.mauki.net" + ChatColor.RED + "!");
+                ChatColor.RED + "Verbinde dich danach erneut auf " + ChatColor.GOLD + "mc.mauki.net" + ChatColor.RED + "!"));
+/*        event.getPlayer().kick(Component.text(ChatColor.RED + "Bitte verifiziere dich auf Discord mit " + ChatColor.GOLD + "/link <code>\n" +
+                ChatColor.RED + "Verwende dabei folgenden Code: " + ChatColor.GREEN + code + "\n" +
+                ChatColor.RED + "Verbinde dich danach erneut auf " + ChatColor.GOLD + "mc.mauki.net" + ChatColor.RED + "!"));*/
     }
 
 }

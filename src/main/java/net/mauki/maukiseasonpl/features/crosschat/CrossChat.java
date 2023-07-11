@@ -43,7 +43,7 @@ public class CrossChat extends ListenerAdapter implements Listener {
         if(!event.isFromGuild()) return;
         if(event.getChannel().asTextChannel().getIdLong() != 1109934419508203641L) return;
         if(event.getAuthor().isBot() || event.getAuthor().isSystem()) return;
-        Bukkit.broadcastMessage(ChatColor.GRAY + "[" + ChatColor.RESET + ChatColor.AQUA + "Discord - " + event.getAuthor().getName() + ChatColor.RESET + ChatColor.GRAY + "]: " +
+        Bukkit.broadcastMessage(ChatColor.GRAY + "[" + ChatColor.RESET + ChatColor.BLUE + "Discord - " + event.getAuthor().getName() + ChatColor.RESET + ChatColor.GRAY + "]: " +
                 event.getMessage().getContentRaw());
     }
 
