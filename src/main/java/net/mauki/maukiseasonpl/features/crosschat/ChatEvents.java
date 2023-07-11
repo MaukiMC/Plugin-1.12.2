@@ -7,6 +7,8 @@ import net.mauki.maukiseasonpl.core.Boot;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
@@ -32,7 +34,7 @@ public class ChatEvents extends ListenerAdapter implements Listener {
         Objects.requireNonNull(Boot.getDISCORD_CLIENT().getJDA().getTextChannelById(1109934419508203641L)).sendMessageEmbeds(
                 new EmbedBuilder()
                         .setColor(Color.green)
-                        .setAuthor(event.getPlayer().getName() + " ist dem Spiel beigetreten.",null,  "https://crafatar.com/avatars/" + event.getPlayer().getUniqueId() + "?overlay")
+                        .setAuthor(":green_circle: " + event.getPlayer().getName() + " ist dem Spiel beigetreten.",null,  "https://crafatar.com/avatars/" + event.getPlayer().getUniqueId() + "?overlay")
                         .build()
         ).queue();
     }
@@ -51,10 +53,32 @@ public class ChatEvents extends ListenerAdapter implements Listener {
         Objects.requireNonNull(Boot.getDISCORD_CLIENT().getJDA().getTextChannelById(1109934419508203641L)).sendMessageEmbeds(
                 new EmbedBuilder()
                         .setColor(Color.red)
-                        .setAuthor(event.getPlayer().getName() + " hat das Spiel verlassen.",null,  "https://crafatar.com/avatars/" + event.getPlayer().getUniqueId() + "?overlay")
+                        .setAuthor(":red_circle: " + event.getPlayer().getName() + " hat das Spiel verlassen.",null,  "https://crafatar.com/avatars/" + event.getPlayer().getUniqueId() + "?overlay")
                         .build()
         ).queue();
         if(Caches.latestMessageCache.contains(event.getPlayer())) Caches.latestMessageCache.remove(event.getPlayer());
+    }
+
+    @EventHandler
+    public void onAchievement(PlayerAdvancementDoneEvent event) {
+        if(!Boot.getSERVER_NAME().equalsIgnoreCase("pa01")) return;
+        Objects.requireNonNull(Boot.getDISCORD_CLIENT().getJDA().getTextChannelById(1109934419508203641L)).sendMessageEmbeds(
+                new EmbedBuilder()
+                        .setColor(Color.red)
+                        .setAuthor(":trophy: " + event.getPlayer().getName() + " hat die Errungenschaft " + event.message() + " erzielt!",null,  "https://crafatar.com/avatars/" + event.getPlayer().getUniqueId() + "?overlay")
+                        .build()
+        ).queue();
+    }
+
+    @EventHandler
+    public void onDeath(PlayerDeathEvent event) {
+        if(!Boot.getSERVER_NAME().equalsIgnoreCase("pa01")) return;
+        Objects.requireNonNull(Boot.getDISCORD_CLIENT().getJDA().getTextChannelById(1109934419508203641L)).sendMessageEmbeds(
+                new EmbedBuilder()
+                        .setColor(Color.red)
+                        .setAuthor(":skull: " + event.getEntity().getName() + " ist durch **" + event.deathMessage() + "** gestorben!",null,  "https://crafatar.com/avatars/" + event.getEntity().getUniqueId() + "?overlay")
+                        .build()
+        ).queue();
     }
 
 }
