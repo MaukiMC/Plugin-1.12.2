@@ -1,7 +1,9 @@
 package net.mauki.maukiseasonpl.commands;
 
+import net.kyori.adventure.text.Component;
 import net.mauki.maukiseasonpl.core.MessageConstants;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -40,7 +42,11 @@ public class InvseeCMD implements CommandExecutor {
             player.sendMessage();
             return false;
         }
-        player.openInventory(target.getInventory());
+        try {
+            player.openInventory(target.getInventory());
+        } catch(Exception ex) {
+            sender.sendMessage(Component.text(ChatColor.RED + "Beim Öffnen des Inventars ist ein Fehler aufgetreten!"));
+        }
         return true;
     }
 }
